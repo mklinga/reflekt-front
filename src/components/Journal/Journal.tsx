@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import MoodIndicator from './MoodIndicator/MoodIndicator';
 import { JournalEntry } from '../../types/types';
+import { loadJournalEntry } from '../../services/journal';
 
 type Props = {
     date: Date;
@@ -8,10 +9,19 @@ type Props = {
 }
 
 export default (props: Props) => {
-    const journalEntry: JournalEntry = {
-        mood: '🤩',
-        title: 'First entry, best entry?',
-        journal: 'This is the first, maybe the best, entry that this application will ever see.'
+    const [journalEntry, setJournalEntry] = useState<JournalEntry>(null);
+    useEffect(() => {
+        const fetchData = async () => {
+            console.log('fetching data')
+            const data = await loadJournalEntry(props.date);
+            setJournalEntry(data);
+        }
+
+        fetchData();
+    }, []);
+
+    if (!journalEntry) {
+        return <span>Loading...</span>
     }
 
     return <div>
