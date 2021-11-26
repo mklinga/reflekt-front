@@ -6,7 +6,7 @@ const httpProxy = require('http-proxy');
 esbuild.serve({
   servedir: 'public',
 }, {
-  entryPoints: ['src/index.tsx', 'src/index.css'],
+  entryPoints: ['src/index.tsx'],
   outdir: 'public/dist',
   bundle: true,
 }).then(result => {
