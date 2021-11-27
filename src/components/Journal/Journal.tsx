@@ -1,31 +1,34 @@
-import React, { useEffect, useState } from 'react';
+import * as React from 'react';
+import { useEffect, useState } from 'react';
 import MoodIndicator from './MoodIndicator/MoodIndicator';
 import { JournalEntry } from '../../types/types';
 import { loadJournalEntry } from '../../services/journal';
+import { useParams } from 'react-router-dom';
 
-type Props = {
-    date: Date;
-    readonly: boolean;
+const fetchData = async (date: string, setData: React.Dispatch<React.SetStateAction<JournalEntry>>) => {
+    const data = await loadJournalEntry(date);
+    setData(data);
 }
 
-export default (props: Props) => {
-    const [journalEntry, setJournalEntry] = useState<JournalEntry>(null);
-    useEffect(() => {
-        const fetchData = async () => {
-            console.log('fetching data')
-            const data = await loadJournalEntry(props.date);
-            setJournalEntry(data);
-        }
+const getTodayISO = () => (new Date()).toISOString().substr(0, 10);
 
-        fetchData();
-    }, []);
+export default () => {
+    const date = useParams().date || getTodayISO();
+    
+    const [journalEntry, setJournalEntry] = useState<JournalEntry>(null);
+    const [readonly, setReadonly] = useState(true);
+
+    useEffect(() => {
+        console.log('effect for', date);
+        fetchData(date, setJournalEntry);
+    }, [date]);
 
     if (!journalEntry) {
         return <span>Loading...</span>
     }
 
     return <div>
-        <h2>{props.date.toLocaleDateString()}</h2>
-        <MoodIndicator readonly={props.readonly} journal={journalEntry} />
+        <h2>{date}</h2>
+        <MoodIndicator readonly={readonly} journal={journalEntry} />
     </div>
 }

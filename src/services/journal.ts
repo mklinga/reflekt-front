@@ -1,12 +1,11 @@
 import { JournalEntry } from "../types/types";
 
-export const loadJournalEntry: (date: Date) => Promise<JournalEntry> = async date => {
-    const dateString = date.toISOString().substr(0, 10);
+export const loadJournalEntry: (date: string) => Promise<JournalEntry> = async date => {
     try {
-        const data: JournalEntry = await fetch(`/api/journal/${dateString}`).then(x => x.json());
+        const data: JournalEntry = await fetch(`/api/journal/${date}`).then(x => x.json());
         return data;
     } catch (e) {
-        console.error(`Error fetching the journal for ${dateString}`, e);
+        console.error(`Error fetching the journal for ${date}`, e);
         return { mood: '', title: '', journal: '' };
     }
 }

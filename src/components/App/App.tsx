@@ -1,5 +1,5 @@
-import React from 'react';
-import Journal from '../Journal/Journal';
+import * as React from 'react';
+import { Outlet } from 'react-router';
 
 export default () => {
     const date = new Date();
@@ -7,6 +7,6 @@ export default () => {
         <header>
             <h1>Reflekt</h1>
         </header>
-        <Journal date={date} readonly={true} />
+        <Outlet />
     </div>
 }

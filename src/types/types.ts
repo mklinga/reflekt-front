@@ -3,3 +3,8 @@ export type JournalEntry = {
     title: string;
     journal: string;
 }
+
+export type ChallengeEntry = {
+    completed: boolean;
+    description: string;
+}

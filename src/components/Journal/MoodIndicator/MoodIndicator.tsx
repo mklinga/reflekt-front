@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { JournalEntry } from '../../../types/types';
 
 import './MoodIndicator.css';

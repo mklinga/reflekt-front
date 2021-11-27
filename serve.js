@@ -32,10 +32,14 @@ esbuild.serve({
 
     // Forward each incoming request to esbuild
     const proxyReq = http.request(options, proxyRes => {
-      // If esbuild returns "not found", send a custom 404 page
+      // If esbuild returns "not found", fall back to /
       if (proxyRes.statusCode === 404) {
-        res.writeHead(404, { 'Content-Type': 'text/html' });
-        res.end('<h1>A custom 404 page</h1>');
+        const redirectReq = http.request({ ...options, path: "/" }, (proxyRes2) => {
+          // Forward the response from esbuild to the client
+          res.writeHead(proxyRes2.statusCode, proxyRes2.headers);
+          proxyRes2.pipe(res, { end: true });
+        });
+        redirectReq.end();
         return;
       }
 
