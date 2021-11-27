@@ -24,7 +24,9 @@ fetchSystemInformation().then(information => {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<App />}>
-                    <Route path="journal/:date" element={<Journal />}></Route>
+                    <Route path="journal" element={<Journal />}>
+                        <Route path=":date" element={null}></Route>
+                    </Route>
                 </Route>
                 <Route path="*" element={<span>404, that's all.</span>} />
             </Routes>
