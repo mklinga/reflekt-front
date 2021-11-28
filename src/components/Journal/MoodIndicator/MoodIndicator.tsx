@@ -13,5 +13,10 @@ export default (props: Props) => {
         return <span className='MoodIndicator'>{props.journal.mood}</span>
     }
 
-    return <span>MOOD</span>
+    return (
+        <>
+            <label htmlFor="mood">Mood:</label>
+            <input type="text" name="mood" />
+        </>
+    );
 }

@@ -8,3 +8,5 @@ export type ChallengeEntry = {
     completed: boolean;
     description: string;
 }
+
+export type JournalFetchStatus = 'NODATA' | 'ERROR' | 'SUCCESS';
