@@ -9,8 +9,6 @@ import {
 import App from './components/App/App';
 import Journal from './components/Journal/Journal';
 
-import './index.css';
-
 const mainElement = document.querySelector('body > main');
 mainElement.innerHTML = 'Loading...';
 

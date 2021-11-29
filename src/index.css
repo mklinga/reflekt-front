@@ -1,26 +1,7 @@
-* {
-    box-sizing: border-box;
-}
+@import "tailwindcss/base";
 
-body {
-    width: 80%;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 25px;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
+@import "tailwindcss/components";
 
-header h1 {
-    padding: 10px;
-    border-bottom: 1px solid black;
-}
+@import "tailwindcss/utilities";
 
-main {
-    flex-grow: 1;
-}
-
-footer {
-    font-size: smaller;
-}
+@import "./main.css"

@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { JournalEntry } from '../../../types/types';
 
-import './MoodIndicator.css';
-
 type Props = {
     readonly: boolean;
     journal: JournalEntry;
@@ -10,7 +8,7 @@ type Props = {
 
 export default (props: Props) => {
     if (props.readonly) {
-        return <span className='MoodIndicator'>{props.journal.mood}</span>
+        return <span className='text-3xl'>{props.journal.mood}</span>
     }
 
     return (

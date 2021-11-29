@@ -17,10 +17,10 @@ export default (props: Props) => {
     const next = isToday(current) ? null : addDays(current, 1);
 
     return (
-        <div className="DateBar">
-            <Link to={`/journal/${format(previous, 'yyyy-MM-dd')}`}>Yesterday</Link>
-            <strong>{current.toLocaleDateString()}</strong>
-            {next ? <Link to={`/journal/${format(next, 'yyyy-MM-dd')}`}>Tomorrow</Link> : null }
+        <div className="text-center">
+            <Link className="text-xs pr-2" to={`/journal/${format(previous, 'yyyy-MM-dd')}`}>{previous.toLocaleDateString()}</Link>
+            <span className="font-bold pr-2">{current.toLocaleDateString()}</span>
+            {next ? <Link className="text-xs" to={`/journal/${format(next, 'yyyy-MM-dd')}`}>{next.toLocaleDateString()}</Link> : null }
         </div>
     );
 }
