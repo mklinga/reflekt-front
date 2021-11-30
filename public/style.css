@@ -29827,10 +29827,6 @@ video {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-* {
-  box-sizing: border-box;
-}
-
 body {
   width: 80%;
   max-width: 800px;
@@ -29847,6 +29843,16 @@ main {
 
 footer {
   font-size: smaller;
+}
+
+/* Markdown - specific styles for the journal */
+
+.journal-document p {
+  margin: 10px 0;
+}
+
+.journal-document h2 {
+  font-weight: bold;
 }
 
 @media (min-width: 640px) {

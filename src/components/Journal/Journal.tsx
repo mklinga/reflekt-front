@@ -5,9 +5,9 @@ import { JournalEntry } from '../../types/types';
 import { fetchData, getTodayISO } from '../../services/journal';
 import { useParams } from 'react-router-dom';
 import DateBar from './DateBar/DateBar';
+import JournalReadOnlyView from './JournalReadOnlyView/JournalReadOnlyView';
 
 export default () => {
-    // const [date, setDate] = useState(useParams().date || getTodayISO());
     const date = useParams().date || getTodayISO();
     const [journalEntry, setJournalEntry] = useState<JournalEntry>(null);
     const [readonly, setReadonly] = useState(true);
@@ -22,6 +22,6 @@ export default () => {
 
     return <div className="py-2">
         <DateBar date={date}  />
-        <MoodIndicator readonly={readonly} journal={journalEntry} />
+        {readonly ? <JournalReadOnlyView journal={journalEntry} /> : null}
     </div>
 }

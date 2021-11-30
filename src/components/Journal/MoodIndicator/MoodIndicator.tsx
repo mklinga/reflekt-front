@@ -8,7 +8,7 @@ type Props = {
 
 export default (props: Props) => {
     if (props.readonly) {
-        return <span className='text-3xl'>{props.journal.mood}</span>
+        return <span className='text-3xl pr-3'>{props.journal.mood}</span>
     }
 
     return (
