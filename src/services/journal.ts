@@ -29,7 +29,7 @@ export const fetchData = async (
             return;
         case 'NODATA':
             setReadonly(false);
-            setData({ mood: '', title: '', journal: '' })
+            setData({ mood: '', title: '', journal: '', social: [], physical: [] })
             break;
         case 'ERROR':
             // TODO

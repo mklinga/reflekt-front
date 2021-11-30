@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
-import MoodIndicator from './MoodIndicator/MoodIndicator';
 import { JournalEntry } from '../../types/types';
 import { fetchData, getTodayISO } from '../../services/journal';
 import { useParams } from 'react-router-dom';
 import DateBar from './DateBar/DateBar';
-import JournalReadOnlyView from './JournalReadOnlyView/JournalReadOnlyView';
+import JournalView from './JournalView/JournalView';
 
 export default () => {
     const date = useParams().date || getTodayISO();
@@ -22,6 +21,6 @@ export default () => {
 
     return <div className="py-2">
         <DateBar date={date}  />
-        {readonly ? <JournalReadOnlyView journal={journalEntry} /> : null}
+        {readonly ? <JournalView journal={journalEntry} /> : null}
     </div>
 }
