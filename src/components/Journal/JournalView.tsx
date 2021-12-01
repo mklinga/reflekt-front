@@ -1,20 +1,22 @@
 import * as React from 'react';
 import { marked } from 'marked';
-import { JournalEntry } from '../../../types/types';
-import MoodIndicator from '../MoodIndicator/MoodIndicator';
-import ChallengeList from '../ChallengeList/ChallengeList';
+import { JournalEntry } from '../../types/types';
+import MoodIndicator from './MoodIndicator';
+import ChallengeList from './ChallengeList';
+import Title from './Title';
 
 type Props = {
     journal: JournalEntry;
+    setData: React.Dispatch<React.SetStateAction<JournalEntry>>,
 }
 
 export default function (props: Props) {
     const journalDocument = marked.parse(props.journal.journal);
 
     return <div className="my-3">
-        <h2 className="text-3xl my-6">
-            <MoodIndicator journal={props.journal} />
-            {props.journal.title}
+        <h2 className="text-3xl my-6 flex">
+            <MoodIndicator journal={props.journal} setData={props.setData} />
+            <Title journal={props.journal} setData={props.setData} />
         </h2>
         <div className="journal-document" dangerouslySetInnerHTML={{ __html: journalDocument }}/>
         <div className="flex flex-column space-x-4">

@@ -19,21 +19,17 @@ const loadJournalEntry: JournalEntryLoader = async date => {
 export const fetchData = async (
     date: string,
     setData: React.Dispatch<React.SetStateAction<JournalEntry>>,
-    setReadonly: React.Dispatch<React.SetStateAction<boolean>>
 ): Promise<void> => {
     const [data, status] = await loadJournalEntry(date);
     switch (status) {
         case 'SUCCESS':
-            setReadonly(true);
             setData(data);
             return;
         case 'NODATA':
-            setReadonly(false);
-            setData({ mood: '', title: '', journal: '', social: [], physical: [] })
-            break;
+            return;
         case 'ERROR':
-            // TODO
         default:
+            // TODO
             return;
     }
 }

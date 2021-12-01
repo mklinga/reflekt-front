@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Challenge } from '../../../types/types';
+import { Challenge } from '../../types/types';
 
 type Props = {
     items: Challenge[];
