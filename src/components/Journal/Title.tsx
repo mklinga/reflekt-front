@@ -27,7 +27,7 @@ export default (props: Props) => {
 
     return (
         <span className='text-3xl pr-3' onClick={() => setEditing(!editing)}>
-            {props.journal.title}
+            {props.journal.title || 'Click to add title'}
         </span>
     );
 }

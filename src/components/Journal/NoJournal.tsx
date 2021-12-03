@@ -8,9 +8,9 @@ type Props = {
 
 const createNewJournalEntry = (setData: React.Dispatch<React.SetStateAction<JournalEntry>>) => () => {
     const emptyJournalEntry: JournalEntry = {
-        mood: '',
-        title: 'Title',
-        journal: '...',
+        mood: '🙂',
+        title: '',
+        journal: '',
         social: [],
         physical: []
     }
