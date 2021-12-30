@@ -2,6 +2,8 @@ const esbuild = require('esbuild');
 const http = require('http');
 const httpProxy = require('http-proxy');
 
+const WSL_PORT = process.env.WSL_HOST; // See ~/.profile for this, restriction of WSL
+
 // Start esbuild's server on a random local port
 esbuild.serve({
   servedir: 'public',
@@ -26,7 +28,8 @@ esbuild.serve({
     }
 
     if (req.url && req.url.startsWith('/api')) {
-      proxy.web(req, res, { target: 'http://127.0.0.1:8001' });
+      req.url = req.url.slice(4);
+      proxy.web(req, res, { target: `http://${WSL_PORT}:8080` });
       return;
     }
 

@@ -1,6 +1,7 @@
 import { JournalEntry, JournalFetchStatus } from "../types/types";
 
 type JournalEntryLoader = (date: string) => Promise<[JournalEntry | null, JournalFetchStatus]>;
+type JournalEntriesLoader = () => Promise<[JournalEntry[] | null, JournalFetchStatus]>;
 
 const loadJournalEntry: JournalEntryLoader = async date => {
     try {
@@ -12,6 +13,20 @@ const loadJournalEntry: JournalEntryLoader = async date => {
         return [await response.json(), 'SUCCESS'];
     } catch (e) {
         console.error(`Error fetching the journal for ${date}`, e);
+        return [null, 'ERROR'];
+    }
+}
+
+const loadJournalEntries: JournalEntriesLoader = async () => {
+    try {
+        const response = await fetch('/api/journal');
+        if (response.status === 404) {
+            return [null, 'NODATA'];
+        }
+
+        return [await response.json(), 'SUCCESS'];
+    } catch (e) {
+        console.error('Error fetching the journal list', e);
         return [null, 'ERROR'];
     }
 }
@@ -30,6 +45,17 @@ export const fetchData = async (
         case 'ERROR':
         default:
             // TODO
+            return;
+    }
+}
+
+export const fetchAllJournalEntries = async (setData: React.Dispatch<React.SetStateAction<JournalEntry[]>>) => {
+    const [data, status] = await loadJournalEntries();
+    switch (status) {
+        case 'SUCCESS':
+            setData(data);
+            break;
+        default:
             return;
     }
 }

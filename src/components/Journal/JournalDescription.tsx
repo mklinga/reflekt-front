@@ -11,7 +11,7 @@ export default (props: Props) => {
     const [editing, setEditing] = React.useState(false);
 
     const doneEditing = (e: React.FocusEvent<HTMLTextAreaElement>) => {
-        props.setData({ ...props.journal, journal: e.target.value });
+        props.setData({ ...props.journal, entry: e.target.value });
         setEditing(false);
     }
 
@@ -20,12 +20,12 @@ export default (props: Props) => {
             <textarea
                 className="w-full h-40"
                 autoFocus
-                defaultValue={props.journal.journal}
+                defaultValue={props.journal.entry}
                 onBlur={doneEditing} />
         );
     }
 
-    const journalDocument = marked.parse(props.journal.journal || '...');
+    const journalDocument = marked.parse(props.journal.entry || '...');
 
     return (
         <div

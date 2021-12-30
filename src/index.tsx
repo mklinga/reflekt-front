@@ -7,7 +7,7 @@ import {
   Route
 } from "react-router-dom";
 import App from './components/App/App';
-import Journal from './components/Journal/Journal';
+import JournalList from './components/Journal/JournalList';
 
 const mainElement = document.querySelector('body > main');
 mainElement.innerHTML = 'Loading...';
@@ -22,7 +22,7 @@ fetchSystemInformation().then(information => {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<App />}>
-                    <Route path="journal" element={<Journal />}>
+                    <Route path="journal" element={<JournalList />}>
                         <Route path=":date" element={null}></Route>
                     </Route>
                 </Route>
