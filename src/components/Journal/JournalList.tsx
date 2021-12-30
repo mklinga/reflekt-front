@@ -2,18 +2,17 @@ import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { fetchAllJournalEntries } from '../../services/journal';
 import { JournalEntry } from '../../types/types';
+import JournalListItem from './JournalListItem';
 
 export default function() {
     const [loaded, setLoaded ]= useState(false)
     const [journalEntries, setJournalEntries] = useState<JournalEntry[]>(null);
 
     useEffect(() => {
-        (async () => {
-            setLoaded(false);
-            setJournalEntries(null);
-            await fetchAllJournalEntries(setJournalEntries);
-            setLoaded(true);
-        })();
+        setLoaded(false);
+        setJournalEntries(null);
+        fetchAllJournalEntries(setJournalEntries)
+            .then(() => setLoaded(true));
     }, []);
 
     if (!loaded) {
@@ -22,10 +21,8 @@ export default function() {
 
     return (
         <div>
-            {journalEntries.map(entry => (
-                <div key={entry.id}>{entry.mood} {entry.title}</div>
-            ))}
-            
+            {journalEntries.map(entry =>
+                <JournalListItem key={entry.id} entry={entry} />)}
         </div>
     )
 }

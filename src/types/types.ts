@@ -3,6 +3,15 @@ export type JournalEntry = {
     mood: string;
     title: string;
     entry: string;
+    entryDate: Date;
+    createdAt: Date;
+    updatedAt: Date;
 }
 
-export type JournalFetchStatus = 'NODATA' | 'ERROR' | 'SUCCESS';
+export type JournalEntryDto = JournalEntry & {
+    createdAt: string;
+    updatedAt: string;
+    entryDate: string;
+}
+
+export type FetchStatus = 'NODATA' | 'ERROR' | 'SUCCESS';
