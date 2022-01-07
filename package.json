@@ -4,7 +4,8 @@
   "description": "Reflekt Frontend",
   "main": "index.js",
   "scripts": {
-    "dev-styles": "postcss src/index.css -o public/style.css",
+    "tailwind-dev": "CHOKIDAR_USEPOLLING=1 npx tailwindcss -i ./src/index.css -o ./public/style.css --watch",
+    "update-journal-css": "cp src/journal.css public/journal.css",
     "typecheck": "tsc --noEmit -p ./tsconfig.json",
     "stylecheck": "eslint --ext ts,tsx src"
   },

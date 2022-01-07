@@ -1,0 +1,9 @@
+/* Markdown - specific styles for the journal */
+
+.journal-document p {
+    margin: 10px 0;
+}
+
+.journal-document h2 {
+    font-weight: bold;
+}
