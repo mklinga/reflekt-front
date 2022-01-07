@@ -9,8 +9,7 @@ export type JournalListItemDto = JournalListItemType & {
     entryDate: string;
 }
 
-
-export type JournalEntry = {
+export type JournalEntryType = {
     id?: string;
     mood: string;
     title: string;
@@ -20,7 +19,7 @@ export type JournalEntry = {
     updatedAt: Date;
 }
 
-export type JournalEntryDto = JournalEntry & {
+export type JournalEntryDto = JournalEntryType & {
     createdAt: string;
     updatedAt: string;
     entryDate: string;
