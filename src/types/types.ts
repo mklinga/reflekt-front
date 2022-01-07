@@ -1,3 +1,15 @@
+export type JournalListItemType = {
+    id: string;
+    mood: string;
+    title: string;
+    entryDate: Date;
+}
+
+export type JournalListItemDto = JournalListItemType & {
+    entryDate: string;
+}
+
+
 export type JournalEntry = {
     id?: string;
     mood: string;

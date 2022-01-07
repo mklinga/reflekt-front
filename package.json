@@ -4,7 +4,8 @@
   "description": "Reflekt Frontend",
   "main": "index.js",
   "scripts": {
-    "dev-styles": "postcss src/index.css -o public/style.css"
+    "dev-styles": "postcss src/index.css -o public/style.css",
+    "typecheck": "tsc --noEmit -p ./tsconfig.json"
   },
   "author": "",
   "license": "ISC",

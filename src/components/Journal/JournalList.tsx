@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { fetchAllJournalEntries } from '../../services/journal';
-import { JournalEntry } from '../../types/types';
+import { JournalListItemType } from '../../types/types';
 import JournalListItem from './JournalListItem';
 
 export default function() {
     const [loaded, setLoaded ]= useState(false)
-    const [journalEntries, setJournalEntries] = useState<JournalEntry[]>(null);
+    const [journalEntries, setJournalEntries] = useState<JournalListItemType[]>(null);
 
     useEffect(() => {
         setLoaded(false);

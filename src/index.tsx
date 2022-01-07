@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import App from './components/App/App';
 import JournalList from './components/Journal/JournalList';
+import JournalEntry from './components/Journal/JournalEntry';
 
 const mainElement = document.querySelector('body > main');
 mainElement.innerHTML = 'Loading...';
@@ -22,9 +23,8 @@ fetchSystemInformation().then(information => {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<App />}>
-                    <Route path="journal" element={<JournalList />}>
-                        <Route path=":date" element={null}></Route>
-                    </Route>
+                    <Route path="journal" element={<JournalList />} />
+                    <Route path="journal/:id" element={<JournalEntry />} />
                 </Route>
                 <Route path="*" element={<span>404, that's all.</span>} />
             </Routes>
