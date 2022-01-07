@@ -1,13 +1,14 @@
 import { JournalEntry, JournalEntryDto } from "../types/types";
 import { fetchJsonData } from '../utils/fetch';
+import { parseStringToDate } from '../utils/date';
 
 /* We convert all the dates from string -> Date objects when loading from the backend */
-function dtoConverter (data: JournalEntryDto[]): JournalEntry[] {
-    return data.map(d => ({
-        ...d,
-        createdAt: new Date(Date.parse(d.createdAt)),
-        updatedAt: new Date(Date.parse(d.updatedAt)),
-        entryDate: new Date(Date.parse(d.entryDate))
+function dtoConverter (dtoData: JournalEntryDto[]): JournalEntry[] {
+    return dtoData.map(journalEntry => ({
+        ...journalEntry,
+        createdAt: parseStringToDate(journalEntry.createdAt),
+        updatedAt: parseStringToDate(journalEntry.updatedAt),
+        entryDate: parseStringToDate(journalEntry.entryDate)
     }));
 }
 

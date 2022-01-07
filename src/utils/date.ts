@@ -1,4 +1,3 @@
-function parseDate(date: string) {
-    console.log(date)
-    return Date.parse(date).toLocaleString();
+export function parseStringToDate (datetimeString: string): Date {
+    return new Date(Date.parse(datetimeString));
 }
