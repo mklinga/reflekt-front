@@ -26,3 +26,10 @@ export type JournalEntryDto = JournalEntryType & {
 }
 
 export type FetchStatus = 'NODATA' | 'ERROR' | 'SUCCESS';
+
+export type LoadingStatus = 'loading' | 'resolved';
+
+export type JournalEntryHook = {
+  journalEntry: JournalEntryType | null;
+  loadingStatus: LoadingStatus;
+}

@@ -1,0 +1,23 @@
+import * as React from 'react';
+import { LoadingStatus } from '../types/types';
+import Spinner from './Common/Spinner';
+
+type Props = {
+  loadingStatus: LoadingStatus;
+  render: () => JSX.Element;
+}
+
+export default function LoaderUntilResolved(props: Props) {
+  const { loadingStatus, render } = props;
+
+  if (loadingStatus === 'resolved') {
+    return render();
+  }
+
+  return (
+    <div className="flex items-center p-3">
+      <Spinner />
+      Loading...
+    </div>
+  );
+}

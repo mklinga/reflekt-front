@@ -9,6 +9,7 @@ import fetchSystemInformation from './services/system';
 import App from './components/App/App';
 import JournalList from './components/Journal/JournalList';
 import JournalEntry from './components/Journal/JournalEntry';
+import JournalEntryEditor from './components/Journal/JournalEntryEditor';
 
 const mainElement = document.querySelector('body > main');
 mainElement.innerHTML = 'Loading...';
@@ -25,6 +26,7 @@ fetchSystemInformation().then((information) => {
         <Route path="/" element={<App />}>
           <Route path="journal" element={<JournalList />} />
           <Route path="journal/:id" element={<JournalEntry />} />
+          <Route path="journal/:id/edit" element={<JournalEntryEditor />} />
         </Route>
         <Route path="*" element={<span>404, that&apos;s all.</span>} />
       </Routes>
