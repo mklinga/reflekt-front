@@ -1,28 +1,32 @@
 export type JournalListItemType = {
-    id: string;
-    mood: string;
-    title: string;
-    entryDate: Date;
+  id: string;
+  mood: string;
+  title: string;
+  entryDate: Date;
 }
 
 export type JournalListItemDto = JournalListItemType & {
-    entryDate: string;
+  entryDate: string;
 }
 
 export type JournalEntryType = {
-    id?: string;
-    mood: string;
-    title: string;
-    entry: string;
-    entryDate: Date;
-    createdAt: Date;
-    updatedAt: Date;
+  id?: string;
+  mood: string;
+  title: string;
+  entry: string;
+  entryDate: Date;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
-export type JournalEntryDto = JournalEntryType & {
-    createdAt: string;
-    updatedAt: string;
-    entryDate: string;
+export type JournalEntryDto = {
+  id?: string;
+  mood: string;
+  title: string;
+  entry: string;
+  entryDate: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export type FetchStatus = 'NODATA' | 'ERROR' | 'SUCCESS';

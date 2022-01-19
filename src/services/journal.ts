@@ -1,8 +1,8 @@
 import * as React from 'react';
 import {
-  JournalEntryDto, JournalListItemDto, JournalListItemType,
+  JournalEntryDto, JournalEntryType, JournalListItemDto, JournalListItemType,
 } from '../types/types';
-import fetchJsonData from '../utils/fetch';
+import { fetchJsonData, putJsonData } from '../utils/fetch';
 import * as converters from '../utils/converters';
 
 export async function fetchJournalEntry(id: string, setData: Function) {
@@ -13,7 +13,7 @@ export async function fetchJournalEntry(id: string, setData: Function) {
       setData(converters.journalEntry.fromDto(data));
       break;
     default:
-      // TODO: do something
+    // TODO: do something
   }
 }
 
@@ -25,6 +25,19 @@ export const fetchAllJournalEntries = async (setData: SetAllEntriesData) => {
       setData(data.map(converters.journalListItem.fromDto));
       break;
     default:
-      // TODO: do something
+    // TODO: do something
   }
 };
+
+async function updateJournalEntry(entry: JournalEntryType) {
+  const putUrl = `/api/journal/${entry.id}`;
+  const dto = converters.journalEntry.toDto(entry);
+  const [data, status] = await putJsonData<JournalEntryDto>(putUrl, dto);
+  console.log(status, data);
+}
+
+export async function saveJournalEntry(entry: JournalEntryType) {
+  return (entry.id)
+    ? updateJournalEntry(entry)
+    : updateJournalEntry(entry);
+}

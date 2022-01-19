@@ -1,8 +1,16 @@
 import {
   JournalEntryType, JournalEntryDto, JournalListItemType, JournalListItemDto,
 } from '../types/types';
-import { parseStringToDate } from './date';
+import { getISODateString, parseStringToDate } from './date';
 
+function journalEntryTypeDtoConverter(journalEntry: JournalEntryType): JournalEntryDto {
+  return {
+    ...journalEntry,
+    createdAt: journalEntry.createdAt.toISOString().replace('T', ' '),
+    updatedAt: journalEntry.updatedAt.toISOString().replace('T', ' '),
+    entryDate: getISODateString(journalEntry.entryDate),
+  };
+}
 function journalEntryDtoConverter(journalEntry: JournalEntryDto): JournalEntryType {
   return {
     ...journalEntry,
@@ -19,5 +27,8 @@ function journalListItemDtoConverter(journalListItem: JournalListItemDto): Journ
   };
 }
 
-export const journalEntry = { fromDto: journalEntryDtoConverter };
+export const journalEntry = {
+  fromDto: journalEntryDtoConverter,
+  toDto: journalEntryTypeDtoConverter,
+};
 export const journalListItem = { fromDto: journalListItemDtoConverter };

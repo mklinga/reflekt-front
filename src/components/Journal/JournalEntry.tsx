@@ -3,7 +3,6 @@ import * as React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import useJournalEntry from '../../hooks/useJournalEntry';
 import { JournalEntryType } from '../../types/types';
-import Spinner from '../Common/Spinner';
 import LoaderUntilResolved from '../LoaderUntilResolved';
 
 function renderEntryView(journalEntry: JournalEntryType) {
