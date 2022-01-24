@@ -2,7 +2,7 @@ import * as React from 'react';
 import {
   JournalEntryDto, JournalEntryType, JournalListItemDto, JournalListItemType,
 } from '../types/types';
-import { fetchJsonData, putJsonData } from '../utils/fetch';
+import { fetchJsonData, putJsonData, postJsonData } from '../utils/fetch';
 import * as converters from '../utils/converters';
 
 export async function fetchJournalEntry(id: string, setData: Function) {
@@ -36,8 +36,15 @@ async function updateJournalEntry(entry: JournalEntryType) {
   console.log(status, data);
 }
 
+async function createJournalEntry(entry: JournalEntryType) {
+  const postUrl = '/api/journal/';
+  const dto = converters.journalEntry.toDto(entry);
+  const [data, status] = await postJsonData<JournalEntryDto>(postUrl, dto);
+  console.log(status, data);
+}
+
 export async function saveJournalEntry(entry: JournalEntryType) {
   return (entry.id)
     ? updateJournalEntry(entry)
-    : updateJournalEntry(entry);
+    : createJournalEntry(entry);
 }

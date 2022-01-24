@@ -4,10 +4,18 @@ import {
 import { getISODateString, parseStringToDate } from './date';
 
 function journalEntryTypeDtoConverter(journalEntry: JournalEntryType): JournalEntryDto {
+  const createdAt = journalEntry.createdAt === null
+    ? null
+    : journalEntry.createdAt.toISOString().replace('T', ' ');
+
+  const updatedAt = journalEntry.updatedAt === null
+    ? null
+    : journalEntry.updatedAt.toISOString().replace('T', ' ');
+
   return {
     ...journalEntry,
-    createdAt: journalEntry.createdAt.toISOString().replace('T', ' '),
-    updatedAt: journalEntry.updatedAt.toISOString().replace('T', ' '),
+    createdAt,
+    updatedAt,
     entryDate: getISODateString(journalEntry.entryDate),
   };
 }

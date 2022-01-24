@@ -1,5 +1,9 @@
 /* eslint-disable import/prefer-default-export */
 export function parseStringToDate(datetimeString: string): Date {
+  if (datetimeString === null) {
+    return null;
+  }
+
   return new Date(Date.parse(datetimeString));
 }
 

@@ -13,6 +13,7 @@ import JournalEntryEditor from './components/Journal/JournalEntryEditor';
 import UnauthorisedException from './utils/exceptions/UnauthorisedException';
 import Login from './components/App/Login';
 import Dashboard from './components/App/Dashboard';
+import JournalEntryCreator from './components/Journal/JournalEntryCreator';
 
 const mainElement = document.querySelector('body > main');
 mainElement.innerHTML = 'Loading...';
@@ -33,6 +34,7 @@ async function load() {
             <Route path="journal" element={<JournalList />} />
             <Route path="journal/:id" element={<JournalEntry />} />
             <Route path="journal/:id/edit" element={<JournalEntryEditor />} />
+            <Route path="journal/new" element={<JournalEntryCreator />} />
           </Route>
           <Route path="*" element={<span>404, that&apos;s all.</span>} />
         </Routes>
