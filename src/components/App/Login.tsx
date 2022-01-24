@@ -2,8 +2,8 @@ import * as React from 'react';
 
 export default function Login() {
   async function doLogin() {
-    const user = 'user';
-    const password = '9039f27e-e80c-4861-acf2-3d4c8793a07e';
+    const user = 'laite';
+    const password = 'laite';
 
     const data = new URLSearchParams();
     data.append('user', user);

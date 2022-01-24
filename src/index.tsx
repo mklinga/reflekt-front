@@ -12,6 +12,7 @@ import JournalEntry from './components/Journal/JournalEntry';
 import JournalEntryEditor from './components/Journal/JournalEntryEditor';
 import UnauthorisedException from './utils/exceptions/UnauthorisedException';
 import Login from './components/App/Login';
+import Dashboard from './components/App/Dashboard';
 
 const mainElement = document.querySelector('body > main');
 mainElement.innerHTML = 'Loading...';
@@ -28,6 +29,7 @@ async function load() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<App />}>
+            <Route path="" element={<Dashboard />} />
             <Route path="journal" element={<JournalList />} />
             <Route path="journal/:id" element={<JournalEntry />} />
             <Route path="journal/:id/edit" element={<JournalEntryEditor />} />
