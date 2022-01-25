@@ -4,6 +4,15 @@
     margin: 10px 0;
 }
 
+.journal-document h1 {
+  font-size: 2em;
+}
+
 .journal-document h2 {
     font-weight: bold;
+}
+
+.journal-document a {
+  --tw-text-opacity: 1;
+  color: rgb(37 99 235 / var(--tw-text-opacity));
 }
