@@ -10,8 +10,12 @@ type Props = {
   journalEntry: JournalEntryType;
 };
 
-function save(journalEntry: JournalEntryType) {
-  saveJournalEntry(journalEntry);
+async function save(
+  journalEntry: JournalEntryType,
+  updateEntry: React.Dispatch<React.SetStateAction<JournalEntryType>>,
+) {
+  const savedEntry = await saveJournalEntry(journalEntry);
+  updateEntry(savedEntry);
 }
 
 export default function EditorForm(props: Props) {
@@ -25,7 +29,7 @@ export default function EditorForm(props: Props) {
           value={modifiedEntry.entryDate}
           updateEntry={updateEntry}
         />
-        <button type="button" onClick={() => save(modifiedEntry)}>Save</button>
+        <button type="button" onClick={() => save(modifiedEntry, updateEntry)}>Save</button>
       </div>
       <div className="flex my-3">
         <MoodPicker value={modifiedEntry.mood} updateEntry={updateEntry} />
