@@ -1,4 +1,5 @@
 import * as React from 'react';
+import HelperPopup from './HelperPopup';
 import { saveJournalEntry } from '../../../services/journal';
 import { JournalEntryType } from '../../../types/types';
 import DatePicker from './DatePicker';
@@ -29,7 +30,11 @@ export default function EditorForm(props: Props) {
           value={modifiedEntry.entryDate}
           updateEntry={updateEntry}
         />
-        <button type="button" onClick={() => save(modifiedEntry, updateEntry)}>Save</button>
+        <div className="flex items-center">
+          {/* TODO: Make generic button, big and green */}
+          <button className="mr-3" type="button" onClick={() => save(modifiedEntry, updateEntry)}>Save</button>
+          <HelperPopup />
+        </div>
       </div>
       <div className="flex my-3">
         <MoodPicker value={modifiedEntry.mood} updateEntry={updateEntry} />
