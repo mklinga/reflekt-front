@@ -6,6 +6,7 @@ import DatePicker from './DatePicker';
 import EntryEditor from './EntryEditor';
 import MoodPicker from './MoodPicker';
 import TitleEditor from './TitleEditor';
+import Toolbar from './Toolbar';
 
 type Props = {
   journalEntry: JournalEntryType;
@@ -26,19 +27,15 @@ export default function EditorForm(props: Props) {
   return (
     <div>
       <div className="flex justify-between">
-        <DatePicker
-          value={modifiedEntry.entryDate}
-          updateEntry={updateEntry}
-        />
-        <div className="flex items-center">
-          {/* TODO: Make generic button, big and green */}
-          <button className="mr-3" type="button" onClick={() => save(modifiedEntry, updateEntry)}>Save</button>
-          <HelperPopup />
-        </div>
+        <Toolbar saveHandler={() => save(modifiedEntry, updateEntry)} />
       </div>
       <div className="flex my-3">
         <MoodPicker value={modifiedEntry.mood} updateEntry={updateEntry} />
         <TitleEditor value={modifiedEntry.title} updateEntry={updateEntry} />
+        <DatePicker
+          value={modifiedEntry.entryDate}
+          updateEntry={updateEntry}
+        />
       </div>
       <EntryEditor value={modifiedEntry.entry} updateEntry={updateEntry} />
     </div>

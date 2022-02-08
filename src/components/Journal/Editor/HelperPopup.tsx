@@ -17,7 +17,7 @@ export default function HelperPopup() {
   return (
     <div className="relative">
       <Overlay onClick={() => setToggled(!toggled)} />
-      <div className="fixed left-1/2 translate-x-[-50%] bg-white right-0 w-[80vw] max-w-screen-lg max-h-[40rem] p-3 overflow-y-scroll">
+      <div className="absolute bg-white right-0 w-[40vw] max-w-screen-lg max-h-[40rem] p-3 overflow-y-scroll">
         {thoughtErrors.map(({ title, description }) => (
           <div key={title}>
             <strong>{title}</strong>
