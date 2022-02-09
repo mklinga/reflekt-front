@@ -10,11 +10,27 @@ export default function SaveButton(props: Props) {
   const { saveHandler } = props;
   const [checkVisible, setCheckVisible] = React.useState(false);
 
+  // We'll need to keep track for component mounting status because we can't reset the check
+  // visibility on an unmounted component. Note that due to React internals, using a simple
+  // variable doesn't work here - we need to use Ref.
+  const isMounted = React.useRef(false);
+  React.useEffect(() => {
+    isMounted.current = true;
+    return () => { isMounted.current = false; };
+  }, []);
+
   async function onSave(e: React.MouseEvent) {
     await saveHandler(e);
     setCheckVisible(true);
 
-    setTimeout(() => setCheckVisible(false), 5000);
+    setTimeout(
+      () => {
+        if (isMounted.current) {
+          setCheckVisible(false);
+        }
+      },
+      5000,
+    );
   }
 
   const checkColorClass = classes([
