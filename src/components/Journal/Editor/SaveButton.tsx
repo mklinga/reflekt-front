@@ -6,13 +6,18 @@ type Props = {
   saveHandler: (e: React.MouseEvent) => Promise<void>;
 }
 
+// How long does it take for save animation to reset (ms)
+const RESET_INTERVAL = 2500;
+
 export default function SaveButton(props: Props) {
   const { saveHandler } = props;
   const [checkVisible, setCheckVisible] = React.useState(false);
 
-  // We'll need to keep track for component mounting status because we can't reset the check
-  // visibility on an unmounted component. Note that due to React internals, using a simple
-  // variable doesn't work here - we need to use Ref.
+  /*
+   * We'll need to keep track for component mounting status because we can't reset the check
+   * visibility on an unmounted component. Note that due to React internals, using a simple
+   * variable doesn't work here - we need to use Ref.
+   */
   const isMounted = React.useRef(false);
   React.useEffect(() => {
     isMounted.current = true;
@@ -29,7 +34,7 @@ export default function SaveButton(props: Props) {
           setCheckVisible(false);
         }
       },
-      5000,
+      RESET_INTERVAL,
     );
   }
 
