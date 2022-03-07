@@ -2,10 +2,12 @@ import { marked } from 'marked';
 import * as React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import useJournalEntry from '../../hooks/useJournalEntry';
-import { JournalEntryType } from '../../types/types';
+import useJournalModules from '../../hooks/useJournalModules';
+import { JournalEntryType, JournalModuleDataType } from '../../types/types';
 import LoaderUntilResolved from '../LoaderUntilResolved';
+import ImageModuleViewer from './Modules/ImageModuleViewer';
 
-function renderEntryView(journalEntry: JournalEntryType) {
+function renderEntryView(journalEntry: JournalEntryType, moduleData: JournalModuleDataType) {
   const {
     id,
     mood,
@@ -27,6 +29,7 @@ function renderEntryView(journalEntry: JournalEntryType) {
         </Link>
         <span className="text-gray-400 text-sm">{entryDate.toLocaleDateString()}</span>
       </div>
+      {moduleData.images ? <ImageModuleViewer data={moduleData.images} /> : null}
       {/*
         We cannot use tailwind to style the markdown document (not possible to inject style classes)
         so we will have to use "real" class name and external styling (see journal.css)
@@ -40,12 +43,13 @@ function renderEntryView(journalEntry: JournalEntryType) {
 
 export default function JournalEntry() {
   const params = useParams();
-  const { journalEntry, loadingStatus } = useJournalEntry(params.id);
+  const { journalEntry, loadingStatus: entryLoadingStatus } = useJournalEntry(params.id);
+  const { moduleData, loadingStatus: moduleLoadingStatus } = useJournalModules(/* params.id */ 'faec0242-0f7e-4222-8a2f-b3d4253884f8');
 
   return (
     <LoaderUntilResolved
-      loadingStatus={loadingStatus}
-      render={() => renderEntryView(journalEntry)}
+      loadingStatus={[entryLoadingStatus, moduleLoadingStatus]}
+      render={() => renderEntryView(journalEntry, moduleData)}
     />
   );
 }

@@ -3,14 +3,18 @@ import { LoadingStatus } from '../types/types';
 import Spinner from './Common/Spinner';
 
 type Props = {
-  loadingStatus: LoadingStatus;
+  loadingStatus: LoadingStatus | LoadingStatus[];
   render: () => JSX.Element;
 }
 
 export default function LoaderUntilResolved(props: Props) {
   const { loadingStatus, render } = props;
 
-  if (loadingStatus === 'resolved') {
+  const hasLoaded = Array.isArray(loadingStatus)
+    ? loadingStatus.every((status) => status === 'resolved')
+    : loadingStatus === 'resolved';
+
+  if (hasLoaded) {
     return render();
   }
 
