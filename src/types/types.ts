@@ -29,8 +29,10 @@ export type JournalEntryDto = {
   updatedAt: string;
 }
 
+export type Modules = 'images';
+
 export type JournalModuleDataType = {
-  images?: string[];
+  [M in Modules]?: string[];
 }
 
 export type FetchStatus = 'NODATA' | 'ERROR' | 'SUCCESS';

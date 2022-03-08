@@ -1,15 +1,17 @@
 import * as React from 'react';
 import HelperPopup from './HelperPopup';
 import { saveJournalEntry } from '../../../services/journal';
-import { JournalEntryType } from '../../../types/types';
+import { JournalEntryType, JournalModuleDataType } from '../../../types/types';
 import DatePicker from './DatePicker';
 import EntryEditor from './EntryEditor';
 import MoodPicker from './MoodPicker';
 import TitleEditor from './TitleEditor';
 import Toolbar from './Toolbar';
+import ModuleDataEditor from './ModuleDataEditor';
 
 type Props = {
   journalEntry: JournalEntryType;
+  moduleData: JournalModuleDataType;
 };
 
 async function save(
@@ -21,8 +23,9 @@ async function save(
 }
 
 export default function EditorForm(props: Props) {
-  const { journalEntry } = props;
+  const { journalEntry, moduleData } = props;
   const [modifiedEntry, updateEntry] = React.useState(journalEntry);
+  const [modifiedModuleData, updateModuleData] = React.useState(moduleData);
 
   return (
     <div>
@@ -37,6 +40,7 @@ export default function EditorForm(props: Props) {
           updateEntry={updateEntry}
         />
       </div>
+      <ModuleDataEditor moduleData={modifiedModuleData} updateModuleData={updateModuleData} />
       <EntryEditor value={modifiedEntry.entry} updateEntry={updateEntry} />
     </div>
   );

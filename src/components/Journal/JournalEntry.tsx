@@ -44,7 +44,7 @@ function renderEntryView(journalEntry: JournalEntryType, moduleData: JournalModu
 export default function JournalEntry() {
   const params = useParams();
   const { journalEntry, loadingStatus: entryLoadingStatus } = useJournalEntry(params.id);
-  const { moduleData, loadingStatus: moduleLoadingStatus } = useJournalModules(/* params.id */ 'faec0242-0f7e-4222-8a2f-b3d4253884f8');
+  const { moduleData, loadingStatus: moduleLoadingStatus } = useJournalModules(params.id);
 
   return (
     <LoaderUntilResolved
