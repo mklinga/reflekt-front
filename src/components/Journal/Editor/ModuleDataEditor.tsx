@@ -7,12 +7,6 @@ type Props = {
   updateModuleData: React.Dispatch<React.SetStateAction<JournalModuleDataType>>;
 }
 
-function getActiveModules(moduleData: JournalModuleDataType) {
-  return Object.values(moduleData)
-    .filter((value) => (Array.isArray(value) && value.length > 0))
-    .map(([key, _]) => key);
-}
-
 function getModuleEditor(moduleName: Modules, moduleData: string[]) {
   switch (moduleName) {
     case 'images':
@@ -24,7 +18,7 @@ function getModuleEditor(moduleName: Modules, moduleData: string[]) {
 
 export default function ModuleDataEditor(props: Props) {
   const { moduleData, updateModuleData } = props;
-  const activeModules = ['images']; // getActiveModules(moduleData);
+  const activeModules: Modules[] = ['images'];
 
   return (
     <div>

@@ -10,8 +10,7 @@ export default function ImageModuleEditor(props: Props) {
   const params = useParams();
 
   function onFileSelection(event: React.ChangeEvent<HTMLInputElement>) {
-    console.log('Selected file', event.target.files);
-    console.log('Sending to server');
+    /* TODO: move all this to some service */
     const formData = new FormData();
     formData.append('file', event.target.files[0]);
     formData.append('journalEntry', params.id);
@@ -21,9 +20,13 @@ export default function ImageModuleEditor(props: Props) {
 
   return (
     <div>
-      <h6>Uploaded images</h6>
       <div className="flex justify-between items-center">
-        <span>{data.join(', ')}</span>
+        <span>
+          {data && data.length > 0 ? data.length : 'No'}
+          {' '}
+          uploaded images
+
+        </span>
         <label htmlFor="imageUploadInput">
           Upload new image
           <input className="hidden" id="imageUploadInput" type="file" onChange={onFileSelection} />

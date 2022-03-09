@@ -1,5 +1,4 @@
 import * as React from 'react';
-import HelperPopup from './HelperPopup';
 import { saveJournalEntry } from '../../../services/journal';
 import { JournalEntryType, JournalModuleDataType } from '../../../types/types';
 import DatePicker from './DatePicker';
