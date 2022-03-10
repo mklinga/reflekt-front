@@ -17,7 +17,9 @@ export default function ImageModuleViewer(props: Props) {
 
   return (
     <div>
-      {data.map((image) => <img key={image} src={getImageUrl(image)} alt="" />)}
+      {data.map((image) => (
+        <img className="max-h-[60vh] m-auto" key={image} src={getImageUrl(image)} alt="" />
+      ))}
     </div>
   );
 }

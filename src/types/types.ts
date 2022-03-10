@@ -3,6 +3,7 @@ export type JournalListItemType = {
   mood: string;
   title: string;
   entryDate: Date;
+  hasImages: boolean;
 }
 
 export type JournalListItemDto = JournalListItemType & {
