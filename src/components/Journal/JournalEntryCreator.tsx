@@ -4,9 +4,9 @@ import EditorForm from './Editor/EditorForm';
 
 export default function JournalEntryCreator() {
   const journalEntry: JournalEntryType = {
-    mood: '👍',
-    title: 'Title',
-    entry: 'Story',
+    mood: '😶',
+    title: 'It\'s a new day',
+    entry: 'Tell your story',
     entryDate: new Date(),
     createdAt: null,
     updatedAt: null,

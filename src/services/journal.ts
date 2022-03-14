@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {
   FetchStatus,
-  JournalEntryDto, JournalEntryType, JournalListItemDto, JournalListItemType,
+  JournalEntryDto, JournalEntryType, JournalListItemDto, JournalListItemType, NavigableJournalEntry,
 } from '../types/types';
 import { fetchJsonData, putJsonData, postJsonData } from '../utils/fetch';
 import * as converters from '../utils/converters';
@@ -11,10 +11,10 @@ export async function fetchJournalEntry(
   setData: React.Dispatch<React.SetStateAction<JournalEntryType>>,
 ) {
   const fetchUrl = `/api/journal/${id}`;
-  const [data, status] = await fetchJsonData<JournalEntryDto>(fetchUrl);
+  const [data, status] = await fetchJsonData<NavigableJournalEntry>(fetchUrl);
   switch (status) {
     case 'SUCCESS':
-      setData(converters.journalEntry.fromDto(data));
+      setData(converters.journalEntry.fromDto(data.data));
       break;
     default:
     // TODO: do something

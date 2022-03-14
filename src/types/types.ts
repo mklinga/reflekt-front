@@ -49,3 +49,13 @@ export type JournalModulesHook = {
   moduleData: JournalModuleDataType | null;
   loadingStatus: LoadingStatus;
 }
+
+export type NavigationData = {
+  next: string;
+  previous: string;
+}
+
+export type NavigableJournalEntry = {
+  data: JournalEntryDto;
+  navigationData: NavigationData;
+}
