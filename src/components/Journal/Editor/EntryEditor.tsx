@@ -16,7 +16,7 @@ export default function EntryEditor(props: Props) {
   return (
     <div>
       <textarea
-        className="w-full min-h-[50vh] border border-black"
+        className="w-full min-h-[50vh] border border-black p-[2px]"
         value={value || 'Add your story'}
         onChange={onChange}
       />
