@@ -39,7 +39,11 @@ export default function EditorForm(props: Props) {
           updateEntry={updateEntry}
         />
       </div>
-      <ModuleDataEditor moduleData={modifiedModuleData} updateModuleData={updateModuleData} />
+      <ModuleDataEditor
+        moduleData={modifiedModuleData}
+        updateModuleData={updateModuleData}
+        entryId={modifiedEntry.id}
+      />
       <EntryEditor value={modifiedEntry.entry} updateEntry={updateEntry} />
     </div>
   );

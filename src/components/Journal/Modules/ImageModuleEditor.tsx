@@ -1,21 +1,24 @@
 import * as React from 'react';
-import { useParams } from 'react-router';
 
 type Props = {
   data: string[];
+  entryId: string;
 }
 
 export default function ImageModuleEditor(props: Props) {
-  const { data } = props;
-  const params = useParams();
+  const { data, entryId } = props;
 
   function onFileSelection(event: React.ChangeEvent<HTMLInputElement>) {
     /* TODO: move all this to some service */
     const formData = new FormData();
     formData.append('file', event.target.files[0]);
-    formData.append('journalEntry', params.id);
+    formData.append('journalEntry', entryId);
 
     fetch('/api/images', { method: 'POST', body: formData });
+  }
+
+  if (!entryId) {
+    return null;
   }
 
   return (

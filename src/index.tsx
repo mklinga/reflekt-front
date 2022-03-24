@@ -21,7 +21,7 @@ mainElement.innerHTML = 'Loading...';
 async function load() {
   try {
     const loginInformation = await fetchSystemInformation();
-    // TODO: could be a react element as well
+    // TODO: should be a react element as well
     const informationSpan = document.createElement('span');
     informationSpan.innerHTML = loginInformation.hello;
     document.querySelector('body footer').append(informationSpan);
