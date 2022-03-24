@@ -1,8 +1,14 @@
 import * as React from 'react';
+import { ImageModuleDto } from '../../../types/types';
 
 type Props = {
-  data: string[];
+  data: ImageModuleDto[];
   entryId: string;
+}
+
+function getUploadedImageString(data: ImageModuleDto[]) {
+  const imageNames = data.map((image) => image.name).join(',');
+  return `Uploaded images: ${imageNames}`;
 }
 
 export default function ImageModuleEditor(props: Props) {
@@ -25,10 +31,7 @@ export default function ImageModuleEditor(props: Props) {
     <div>
       <div className="flex justify-between items-center">
         <span>
-          {data && data.length > 0 ? data.length : 'No'}
-          {' '}
-          uploaded images
-
+          {data && data.length > 0 ? getUploadedImageString(data) : 'No uploaded images'}
         </span>
         <label htmlFor="imageUploadInput">
           Upload new image

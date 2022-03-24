@@ -1,7 +1,8 @@
 import * as React from 'react';
+import { ImageModuleDto } from '../../../types/types';
 
 type Props = {
-  data: string[];
+  data: ImageModuleDto[];
 };
 
 function getImageUrl(image: string): string {
@@ -18,7 +19,7 @@ export default function ImageModuleViewer(props: Props) {
   return (
     <div>
       {data.map((image) => (
-        <img className="max-h-[60vh] m-auto" key={image} src={getImageUrl(image)} alt="" />
+        <img className="max-h-[60vh] m-auto" key={image.id} src={getImageUrl(image.id)} alt={image.name} />
       ))}
     </div>
   );

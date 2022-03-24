@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { JournalModuleDataType, Modules } from '../../../types/types';
+import { ImageModuleDto, JournalModuleDataType, Modules } from '../../../types/types';
 import ImageModuleEditor from '../Modules/ImageModuleEditor';
 
 type Props = {
@@ -8,7 +8,7 @@ type Props = {
   updateModuleData: React.Dispatch<React.SetStateAction<JournalModuleDataType>>;
 }
 
-function getModuleEditor(moduleName: Modules, moduleData: string[], entryId: string) {
+function getModuleEditor(moduleName: Modules, moduleData: ImageModuleDto[], entryId: string) {
   switch (moduleName) {
     case 'images':
       return <ImageModuleEditor data={moduleData} entryId={entryId} />;
