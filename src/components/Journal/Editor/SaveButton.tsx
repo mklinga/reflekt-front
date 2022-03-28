@@ -3,6 +3,7 @@ import CheckIcon from '../../../icons/CheckIcon';
 import classes from '../../../utils/classes';
 
 type Props = {
+  isDirty: boolean;
   saveHandler: (e: React.MouseEvent) => Promise<void>;
 }
 
@@ -10,7 +11,7 @@ type Props = {
 const RESET_INTERVAL = 2500;
 
 export default function SaveButton(props: Props) {
-  const { saveHandler } = props;
+  const { saveHandler, isDirty } = props;
   const [checkVisible, setCheckVisible] = React.useState(false);
 
   /*
@@ -41,21 +42,21 @@ export default function SaveButton(props: Props) {
   const checkColorClass = classes([
     'transition-colors',
     'duration-500',
-    checkVisible ? 'text-green-400' : 'text-transparent',
+    checkVisible ? 'text-green-600' : 'text-transparent',
   ]);
   const buttonClass = classes([
     'transition-colors',
     'duration-500',
-    'mr-3',
     'flex',
     'items-center',
-    checkVisible && 'text-green-400',
+    checkVisible && 'text-green-600',
   ]);
 
   return (
     <button className={buttonClass} type="button" onClick={onSave}>
       <span className={checkColorClass}><CheckIcon /></span>
       Save
+      {isDirty ? '!' : null}
     </button>
   );
 }

@@ -5,8 +5,9 @@ import DatePicker from './DatePicker';
 import EntryEditor from './EntryEditor';
 import MoodPicker from './MoodPicker';
 import TitleEditor from './TitleEditor';
-import Toolbar from './Toolbar';
 import ModuleDataEditor from './ModuleDataEditor';
+import { usePrompt } from '../../../utils/routing';
+import SaveButton from './SaveButton';
 
 type Props = {
   journalEntry: JournalEntryType;
@@ -16,35 +17,57 @@ type Props = {
 async function save(
   journalEntry: JournalEntryType,
   updateEntry: React.Dispatch<React.SetStateAction<JournalEntryType>>,
+  setIsDirty: React.Dispatch<React.SetStateAction<boolean>>,
 ) {
   const savedEntry = await saveJournalEntry(journalEntry);
   updateEntry(savedEntry);
+  setIsDirty(false);
+}
+
+function handleEdit(
+  updateEntry: React.Dispatch<React.SetStateAction<JournalEntryType>>,
+  setIsDirty: React.Dispatch<React.SetStateAction<boolean>>,
+) {
+  return function handler(input: React.SetStateAction<JournalEntryType>) {
+    setIsDirty(true);
+    updateEntry(input);
+  };
 }
 
 export default function EditorForm(props: Props) {
   const { journalEntry, moduleData } = props;
+  const [isDirty, setIsDirty] = React.useState(false);
   const [modifiedEntry, updateEntry] = React.useState(journalEntry);
   const [modifiedModuleData, updateModuleData] = React.useState(moduleData);
 
+  usePrompt('You have made some unsaved changes. Do you want to discard them and leave the editor?', isDirty);
+
   return (
     <div>
-      <div className="flex justify-between">
-        <Toolbar saveHandler={() => save(modifiedEntry, updateEntry)} />
-      </div>
       <div className="flex my-3">
-        <MoodPicker value={modifiedEntry.mood} updateEntry={updateEntry} />
-        <TitleEditor value={modifiedEntry.title} updateEntry={updateEntry} />
+        <MoodPicker value={modifiedEntry.mood} updateEntry={handleEdit(updateEntry, setIsDirty)} />
+        <TitleEditor
+          value={modifiedEntry.title}
+          updateEntry={handleEdit(updateEntry, setIsDirty)}
+        />
         <DatePicker
           value={modifiedEntry.entryDate}
-          updateEntry={updateEntry}
+          updateEntry={handleEdit(updateEntry, setIsDirty)}
         />
+        <div className="flex items-center">
+          <SaveButton
+            isDirty={isDirty}
+            saveHandler={() => save(modifiedEntry, updateEntry, setIsDirty)}
+          />
+
+        </div>
       </div>
       <ModuleDataEditor
         moduleData={modifiedModuleData}
         updateModuleData={updateModuleData}
         entryId={modifiedEntry.id}
       />
-      <EntryEditor value={modifiedEntry.entry} updateEntry={updateEntry} />
+      <EntryEditor value={modifiedEntry.entry} updateEntry={handleEdit(updateEntry, setIsDirty)} />
     </div>
   );
 }

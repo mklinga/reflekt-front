@@ -15,7 +15,7 @@ export default function DatePicker(props: Props) {
   }
 
   return (
-    <div>
+    <div className="flex align-center">
       <input type="date" value={getISODateString(value)} onChange={onChange} />
     </div>
   );
