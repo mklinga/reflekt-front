@@ -28,3 +28,10 @@
   border-left: 1px solid #9ca3af;
   font-style: italic;
 }
+
+.journal-document hr {
+  margin: 2rem 0;
+  border-top: 1px solid #9ca3af;
+  width: 50%;
+  transform: translateX(50%);
+}
