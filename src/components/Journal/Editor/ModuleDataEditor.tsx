@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { JournalModuleDataType, Modules } from '../../../types/types';
 import ImageModuleEditor from '../Modules/ImageModuleEditor';
+import TagModuleEditor from '../Modules/TagModuleEditor';
 
 type Props = {
   moduleData: JournalModuleDataType;
@@ -10,7 +11,7 @@ type Props = {
 
 export default function ModuleDataEditor(props: Props) {
   const { moduleData, updateModuleData, entryId } = props;
-  const activeModules: Modules[] = ['images'];
+  const activeModules: Modules[] = ['images', 'tags'];
 
   function getModuleEditor(moduleName: string) {
     switch (moduleName) {
@@ -18,6 +19,15 @@ export default function ModuleDataEditor(props: Props) {
         return (
           <ImageModuleEditor
             data={moduleData.images}
+            entryId={entryId}
+            updateModuleData={updateModuleData}
+          />
+        );
+
+      case 'tags':
+        return (
+          <TagModuleEditor
+            data={moduleData.tags}
             entryId={entryId}
             updateModuleData={updateModuleData}
           />

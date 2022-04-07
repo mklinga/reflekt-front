@@ -30,15 +30,22 @@ export type JournalEntryDto = {
   updatedAt: string;
 }
 
-export type Modules = 'images';
+export type Modules = 'images' | 'tags';
 
 export type ImageModuleDto = {
   id: string;
   name: string;
 }
 
+export type TagModuleDto = {
+  id: string;
+  name: string;
+  color: string;
+}
+
 export type JournalModuleDataType = {
   images?: ImageModuleDto[];
+  tags?: TagModuleDto[];
 }
 
 export type FetchStatus = 'NODATA' | 'ERROR' | 'SUCCESS';

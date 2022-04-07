@@ -6,6 +6,7 @@ import useJournalModules from '../../hooks/useJournalModules';
 import { JournalEntryType, JournalModuleDataType } from '../../types/types';
 import LoaderUntilResolved from '../LoaderUntilResolved';
 import ImageModuleViewer from './Modules/ImageModuleViewer';
+import TagModuleViewer from './Modules/TagModuleViewer';
 
 function renderEntryView(journalEntry: JournalEntryType, moduleData: JournalModuleDataType) {
   const {
@@ -30,6 +31,7 @@ function renderEntryView(journalEntry: JournalEntryType, moduleData: JournalModu
         <span className="text-gray-400 text-sm">{entryDate.toLocaleDateString()}</span>
       </div>
       {moduleData.images ? <ImageModuleViewer data={moduleData.images} /> : null}
+      {moduleData.tags ? <TagModuleViewer data={moduleData.tags} /> : null}
       {/*
         We cannot use tailwind to style the markdown document (not possible to inject style classes)
         so we will have to use "real" class name and external styling (see journal.css)
