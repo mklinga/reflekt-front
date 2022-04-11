@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import type { Blocker, History, Transition } from 'history';
 import {
   ContextType, useCallback, useContext, useEffect,

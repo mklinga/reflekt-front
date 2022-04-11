@@ -7,7 +7,7 @@ type Props = {
 }
 
 export default function Tag(props: Props) {
-  const { tag: { name, color, id }, onClick } = props;
+  const { tag: { name, color }, onClick } = props;
   const style = { color, border: `1px solid ${color}` };
 
   return (
