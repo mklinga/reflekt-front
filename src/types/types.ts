@@ -38,7 +38,7 @@ export type ImageModuleDto = {
 }
 
 export type TagModuleDto = {
-  id: string;
+  id?: string;
   name: string;
   color: string;
 }

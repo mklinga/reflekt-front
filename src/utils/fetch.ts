@@ -24,8 +24,12 @@ export async function sendBody<T>(url: string, body: T, method = 'POST'): Promis
       return [null, 'NODATA'];
     }
 
-    const data = await response.json();
-    return [data, 'SUCCESS'];
+    if (response.status >= 200 && response.status <= 299) {
+      const data = await response.json();
+      return [data, 'SUCCESS'];
+    }
+
+    throw new Error('Bad status code');
   } catch (e) {
     return [null, 'ERROR'];
   }
