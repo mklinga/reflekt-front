@@ -7,24 +7,25 @@ type Props = {
   data: TagModuleDto[];
   entryId: string;
   updateModuleData: React.Dispatch<React.SetStateAction<JournalModuleDataType>>;
+  setIsDirty: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 type TagSelectorProps = {
   tags: TagModuleDto[],
   visible: boolean,
-  setDirty: React.Dispatch<React.SetStateAction<boolean>>
+  setIsDirty: React.Dispatch<React.SetStateAction<boolean>>
   toggleTagFn: (tag: TagModuleDto) => void,
 }
 
 function TagSelector({
-  tags, visible, setDirty, toggleTagFn,
+  tags, visible, setIsDirty, toggleTagFn,
 }: TagSelectorProps) {
   const className = classes([
     'absolute', 'w-full', visible ? 'visible' : 'hidden', 'border', 'border-dashed', 'border-black', 'bg-white', 'p-4',
   ]);
 
   const handleClick = (tag: TagModuleDto) => (e: React.MouseEvent<HTMLButtonElement>) => {
-    setDirty(true);
+    setIsDirty(true);
     toggleTagFn(tag);
     e.preventDefault();
   };
@@ -51,10 +52,11 @@ function toggleTag(
 }
 
 export default function TagModuleEditor(props: Props) {
-  const { data, entryId, updateModuleData } = props;
+  const {
+    data, entryId, updateModuleData, setIsDirty,
+  } = props;
   const [allTags, setAllTags] = React.useState([]);
   const [tagSelectorVisible, setTagSelectorVisible] = React.useState(false);
-  const [dirty, setDirty] = React.useState(false);
 
   const hasTags = Array.isArray(data) && data.length > 0;
   const tagLine = hasTags ? data.map((tag) => <Tag key={tag.id} tag={tag} />) : 'No tags';
@@ -87,11 +89,10 @@ export default function TagModuleEditor(props: Props) {
           <TagSelector
             tags={allTags}
             visible={tagSelectorVisible}
-            setDirty={setDirty}
+            setIsDirty={setIsDirty}
             toggleTagFn={toggleTag(updateModuleData)}
           />
         </div>
-        <button type="button" className={dirty ? 'text-pink-500' : ''}>Update</button>
       </div>
     </div>
   );

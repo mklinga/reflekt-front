@@ -8,6 +8,7 @@ import TitleEditor from './TitleEditor';
 import ModuleDataEditor from './ModuleDataEditor';
 import { usePrompt } from '../../../utils/routing';
 import SaveButton from './SaveButton';
+import { saveModuleData } from '../../../services/modules';
 
 type Props = {
   journalEntry: JournalEntryType;
@@ -16,11 +17,15 @@ type Props = {
 
 async function save(
   journalEntry: JournalEntryType,
+  moduleData: JournalModuleDataType,
   updateEntry: React.Dispatch<React.SetStateAction<JournalEntryType>>,
+  // updateModuleData: React.Dispatch<React.SetStateAction<JournalModuleDataType>>,
   setIsDirty: React.Dispatch<React.SetStateAction<boolean>>,
 ) {
   const savedEntry = await saveJournalEntry(journalEntry);
+  /* const savedModuleData = */ await saveModuleData(savedEntry.id, moduleData);
   updateEntry(savedEntry);
+  // updateModuleData(savedModuleData);
   setIsDirty(false);
 }
 
@@ -57,7 +62,7 @@ export default function EditorForm(props: Props) {
         <div className="flex items-center">
           <SaveButton
             isDirty={isDirty}
-            saveHandler={() => save(modifiedEntry, updateEntry, setIsDirty)}
+            saveHandler={() => save(modifiedEntry, modifiedModuleData, updateEntry, setIsDirty)}
           />
 
         </div>
@@ -66,6 +71,7 @@ export default function EditorForm(props: Props) {
         moduleData={modifiedModuleData}
         updateModuleData={updateModuleData}
         entryId={modifiedEntry.id}
+        setIsDirty={setIsDirty}
       />
       <EntryEditor value={modifiedEntry.entry} updateEntry={handleEdit(updateEntry, setIsDirty)} />
     </div>

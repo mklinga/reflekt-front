@@ -1,5 +1,5 @@
 import { JournalModuleDataType } from '../types/types';
-import { fetchJsonData } from '../utils/fetch';
+import { fetchJsonData, postJsonData } from '../utils/fetch';
 
 /* eslint-disable import/prefer-default-export */
 export async function fetchModuleData(
@@ -15,4 +15,9 @@ export async function fetchModuleData(
     default:
     // TODO: do something about the error
   }
+}
+
+export async function saveModuleData(entryId: string, moduleData: JournalModuleDataType) {
+  const postUrl = `/api/modules/${entryId}`;
+  return postJsonData<unknown>(postUrl, moduleData);
 }

@@ -7,10 +7,13 @@ type Props = {
   moduleData: JournalModuleDataType;
   entryId: string;
   updateModuleData: React.Dispatch<React.SetStateAction<JournalModuleDataType>>;
+  setIsDirty: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function ModuleDataEditor(props: Props) {
-  const { moduleData, updateModuleData, entryId } = props;
+  const {
+    moduleData, updateModuleData, entryId, setIsDirty,
+  } = props;
   const activeModules: Modules[] = ['images', 'tags'];
 
   function getModuleEditor(moduleName: string) {
@@ -30,6 +33,7 @@ export default function ModuleDataEditor(props: Props) {
             data={moduleData.tags}
             entryId={entryId}
             updateModuleData={updateModuleData}
+            setIsDirty={setIsDirty}
           />
         );
 
