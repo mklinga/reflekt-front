@@ -10,6 +10,15 @@ type TagSelectorProps = {
   toggleTagFn: (tag: TagModuleDto) => void,
 }
 
+function sortByColorAndName(tags: TagModuleDto[]): TagModuleDto[] {
+  return [].concat(tags).sort((a, b) => {
+    if (a.color.toLowerCase() === b.color.toLowerCase()) {
+      return a.name.localeCompare(b.name);
+    }
+    return a.color.toLowerCase().localeCompare(b.color.toLowerCase());
+  });
+}
+
 export default function TagSelector({
   visible, setIsDirty, toggleTagFn,
 }: TagSelectorProps) {
@@ -18,7 +27,7 @@ export default function TagSelector({
 
   React.useEffect(() => {
     fetch('/api/tags/').then((response) => response.json()).then((allTagData: TagModuleDto[]) => {
-      setAllTags(allTagData);
+      setAllTags(sortByColorAndName(allTagData));
     });
   }, []);
 
@@ -38,10 +47,20 @@ export default function TagSelector({
     <div className={className}>
       {tagEditorVisible
         ? <TagEditorInline setTags={setAllTags} />
-        : allTags.map((tag) => <Tag key={tag.id} tag={tag} onClick={handleClick(tag)} />)}
-      <button type="button" className="text-blue-600 underline float-right" onClick={addNewTag}>
-        {tagEditorVisible ? 'Close' : 'Add new tag'}
-      </button>
+        : (
+          <div>
+            {allTags.map((tag) => (
+              <span key={tag.id} className="my-1 inline-block">
+                <Tag tag={tag} onClick={handleClick(tag)} />
+              </span>
+            ))}
+          </div>
+        )}
+      <div>
+        <button type="button" className="text-blue-600 underline float-right" onClick={addNewTag}>
+          {tagEditorVisible ? 'Close' : 'Add new tag'}
+        </button>
+      </div>
     </div>
   );
 }
