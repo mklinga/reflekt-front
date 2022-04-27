@@ -16,10 +16,11 @@ function toggleTag(
 ) {
   return function toggle(tag: TagModuleDto) {
     updateModuleData((data: JournalModuleDataType) => {
-      const hasTag = data.tags.find((existingTag) => existingTag.id === tag.id);
+      const existingTags = data.tags || [];
+      const hasTag = existingTags.find((existingTag) => existingTag.id === tag.id);
       return {
         ...data,
-        tags: hasTag ? data.tags.filter((x) => x.id !== tag.id) : data.tags.concat(tag),
+        tags: hasTag ? existingTags.filter((x) => x.id !== tag.id) : existingTags.concat(tag),
       };
     });
   };

@@ -1,9 +1,16 @@
+export type TagModuleDto = {
+  id?: string;
+  name: string;
+  color: string;
+}
+
 export type JournalListItemType = {
   id: string;
   mood: string;
   title: string;
   entryDate: Date;
   hasImages: boolean;
+  tags: TagModuleDto[];
 }
 
 export type JournalListItemDto = JournalListItemType & {
@@ -35,12 +42,6 @@ export type Modules = 'images' | 'tags';
 export type ImageModuleDto = {
   id: string;
   name: string;
-}
-
-export type TagModuleDto = {
-  id?: string;
-  name: string;
-  color: string;
 }
 
 export type JournalModuleDataType = {

@@ -12,7 +12,10 @@ export default function JournalEntryCreator() {
     updatedAt: null,
   };
 
-  const moduleData: JournalModuleDataType = {};
+  const moduleData: JournalModuleDataType = {
+    tags: [],
+    images: [],
+  };
 
   return (
     <EditorForm journalEntry={journalEntry} moduleData={moduleData} />
