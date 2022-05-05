@@ -3,12 +3,17 @@ import * as React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import useJournalEntry from '../../hooks/useJournalEntry';
 import useJournalModules from '../../hooks/useJournalModules';
-import { JournalEntryType, JournalModuleDataType } from '../../types/types';
+import { JournalEntryType, JournalModuleDataType, JournalNavigationData } from '../../types/types';
 import LoaderUntilResolved from '../LoaderUntilResolved';
 import ImageModuleViewer from './Modules/ImageModuleViewer';
 import TagModuleViewer from './Modules/TagModuleViewer';
+import LinkComponent from '../Common/Link';
 
-function renderEntryView(journalEntry: JournalEntryType, moduleData: JournalModuleDataType) {
+function renderEntryView(
+  journalEntry: JournalEntryType,
+  moduleData: JournalModuleDataType,
+  navigationData: JournalNavigationData,
+) {
   const {
     id,
     mood,
@@ -19,6 +24,8 @@ function renderEntryView(journalEntry: JournalEntryType, moduleData: JournalModu
 
   const journalDocument = marked.parse(entry);
   const editLink = `/journal/${id}/edit`;
+  const nextLink = navigationData && navigationData.next ? `/journal/${navigationData.next}` : null;
+  const previousLink = navigationData && navigationData.previous ? `/journal/${navigationData.previous}` : null;
 
   return (
     <div>
@@ -39,19 +46,24 @@ function renderEntryView(journalEntry: JournalEntryType, moduleData: JournalModu
       {/* eslint-disable react/no-danger */}
       <div className="journal-document" dangerouslySetInnerHTML={{ __html: journalDocument }} />
       {/* eslint-enable react/no-danger */}
+      {previousLink ? <LinkComponent to={previousLink}>Previous</LinkComponent> : null}
+      {(previousLink && nextLink) ? ' - ' : null}
+      {nextLink ? <LinkComponent to={nextLink}>Next</LinkComponent> : null}
     </div>
   );
 }
 
 export default function JournalEntry() {
   const params = useParams();
-  const { journalEntry, loadingStatus: entryLoadingStatus } = useJournalEntry(params.id);
+  const {
+    journalEntry, navigationData, loadingStatus: entryLoadingStatus,
+  } = useJournalEntry(params.id);
   const { moduleData, loadingStatus: moduleLoadingStatus } = useJournalModules(params.id);
 
   return (
     <LoaderUntilResolved
       loadingStatus={[entryLoadingStatus, moduleLoadingStatus]}
-      render={() => renderEntryView(journalEntry, moduleData)}
+      render={() => renderEntryView(journalEntry, moduleData, navigationData)}
     />
   );
 }

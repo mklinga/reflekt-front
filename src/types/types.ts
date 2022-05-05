@@ -17,6 +17,11 @@ export type JournalListItemDto = JournalListItemType & {
   entryDate: string;
 }
 
+export type JournalNavigationData = {
+  next: string | null;
+  previous: string | null;
+}
+
 export type JournalEntryType = {
   id?: string;
   mood: string;
@@ -55,6 +60,7 @@ export type LoadingStatus = 'loading' | 'resolved';
 
 export type JournalEntryHook = {
   journalEntry: JournalEntryType | null;
+  navigationData: JournalNavigationData | null;
   loadingStatus: LoadingStatus;
 }
 
@@ -63,12 +69,7 @@ export type JournalModulesHook = {
   loadingStatus: LoadingStatus;
 }
 
-export type NavigationData = {
-  next: string;
-  previous: string;
-}
-
 export type NavigableJournalEntry = {
   data: JournalEntryDto;
-  navigationData: NavigationData;
+  navigationData: JournalNavigationData;
 }

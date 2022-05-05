@@ -10,7 +10,7 @@ export default function useJournalModules(id: string): JournalModulesHook {
     setLoaded(false);
     setModuleData(null);
     fetchModuleData(id, setModuleData).then(() => setLoaded(true));
-  }, []);
+  }, [id]);
 
   return {
     moduleData,
