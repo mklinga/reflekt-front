@@ -10,6 +10,7 @@ import {
 } from '../types/types';
 import { fetchJsonData, putJsonData, postJsonData } from '../utils/fetch';
 import * as converters from '../utils/converters';
+import * as querystring from '../utils/querystring';
 
 export async function fetchJournalEntry(
   id: string,
@@ -29,8 +30,10 @@ export async function fetchJournalEntry(
 }
 
 type SetAllEntriesData = React.Dispatch<React.SetStateAction<JournalListItemType[]>>;
-export const fetchAllJournalEntries = async (setData: SetAllEntriesData) => {
-  const [data, status] = await fetchJsonData<JournalListItemDto[]>('/api/journal');
+export const fetchAllJournalEntries = async (setData: SetAllEntriesData, filter: string) => {
+  const params = querystring.stringify({ search: filter });
+  const endpoint = `/api/journal${params}`;
+  const [data, status] = await fetchJsonData<JournalListItemDto[]>(endpoint);
   switch (status) {
     case 'SUCCESS':
       setData(data.map(converters.journalListItem.fromDto));
