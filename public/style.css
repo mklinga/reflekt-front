@@ -461,6 +461,18 @@ Ensure the default browser behavior of the `hidden` attribute.
   left: 0px;
 }
 
+.top-\[3px\] {
+  top: 3px;
+}
+
+.left-0\.5 {
+  left: 0.125rem;
+}
+
+.left-0 {
+  left: 0px;
+}
+
 .float-right {
   float: right;
 }
@@ -614,10 +626,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   align-items: center;
 }
 
-.justify-center {
-  justify-content: center;
-}
-
 .justify-between {
   justify-content: space-between;
 }
@@ -713,6 +721,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .pr-3 {
   padding-right: 0.75rem;
+}
+
+.pl-6 {
+  padding-left: 1.5rem;
 }
 
 .text-left {

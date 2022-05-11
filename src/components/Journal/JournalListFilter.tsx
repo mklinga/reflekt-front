@@ -1,6 +1,8 @@
 import * as React from 'react';
+import { useNavigate } from 'react-router';
 import SearchIcon from '../../icons/SearchIcon';
 import debounce from '../../utils/debounce';
+import TextInput from '../Common/TextInput';
 
 const DEBOUNCE_TIME = 500; // Time we wait for another keystroke (in ms)
 
@@ -11,19 +13,28 @@ type Props = {
 
 export default function JournalListFilter(props: Props) {
   const { value, setValue } = props;
+  const navigate = useNavigate();
 
-  const updateValue = debounce((newValue: string) => {
-    setValue(newValue);
+  const updateValue = debounce((e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
   }, DEBOUNCE_TIME);
 
-  function onValueChange(e: React.ChangeEvent<HTMLInputElement>) {
-    updateValue(e.target.value);
-  }
+  const onKeyPress = React.useCallback((e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      navigate(`/search/${value}`);
+    }
+  }, [value]);
 
   return (
-    <div className="flex justify-center align-center grow">
-      <span className="text-gray-400 mr-2"><SearchIcon /></span>
-      <input type="text" placeholder="filter" defaultValue={value} onChange={onValueChange} />
+    <div className="relative">
+      <span className="text-gray-400 mr-2 absolute top-[3px] left-0.5"><SearchIcon /></span>
+      <TextInput
+        placeholder="filter"
+        defaultValue={value}
+        onChange={updateValue}
+        onKeyPress={onKeyPress}
+        className="pl-6"
+      />
     </div>
   );
 }

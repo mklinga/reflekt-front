@@ -20,7 +20,7 @@ export default function JournalList() {
 
   return (
     <div>
-      <div className="flex">
+      <div className="flex justify-between">
         <Link to="/journal/new">+ Add new entry</Link>
         <JournalListFilter value={filterValue} setValue={setFilterValue} />
       </div>
