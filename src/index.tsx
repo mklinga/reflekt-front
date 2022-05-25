@@ -36,7 +36,7 @@ async function load() {
             <Route path="journal/:id" element={<JournalEntry />} />
             <Route path="journal/:id/edit" element={<JournalEntryEditor />} />
             <Route path="journal/new" element={<JournalEntryCreator />} />
-            <Route path="search/:term" element={<SearchPage />} />
+            <Route path="search" element={<SearchPage />} />
           </Route>
           <Route path="*" element={<span>404, that&apos;s all.</span>} />
         </Routes>

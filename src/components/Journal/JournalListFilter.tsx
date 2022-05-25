@@ -21,7 +21,7 @@ export default function JournalListFilter(props: Props) {
 
   const onKeyPress = React.useCallback((e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
-      navigate(`/search/${value}`);
+      navigate(`/search/?query=${encodeURIComponent(value)}`);
     }
   }, [value]);
 

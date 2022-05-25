@@ -54,6 +54,12 @@ export type JournalModuleDataType = {
   tags?: TagModuleDto[];
 }
 
+export type SearchResult = {
+  id: string;
+  title: string;
+  entry: string;
+}
+
 export type FetchStatus = 'NODATA' | 'ERROR' | 'SUCCESS';
 
 export type LoadingStatus = 'loading' | 'resolved';
@@ -66,6 +72,11 @@ export type JournalEntryHook = {
 
 export type JournalModulesHook = {
   moduleData: JournalModuleDataType | null;
+  loadingStatus: LoadingStatus;
+}
+
+export type SearchResultHook = {
+  searchResults: SearchResult[];
   loadingStatus: LoadingStatus;
 }
 
