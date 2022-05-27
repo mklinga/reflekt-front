@@ -44,7 +44,7 @@ export default function SearchPage() {
       </h1>
       {loadingStatus === 'resolved'
         ? searchResults.map((searchResult) => (
-          <SearchResultItem data={searchResult} key={searchResult.id} />))
+          <SearchResultItem data={searchResult} key={searchResult.id} query={query} />))
         : <span>Fetching results...</span>}
     </div>
   );
