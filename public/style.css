@@ -473,6 +473,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   left: 0px;
 }
 
+.left-full {
+  left: 100%;
+}
+
 .float-right {
   float: right;
 }
@@ -632,6 +636,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .justify-between {
   justify-content: space-between;
+}
+
+.whitespace-nowrap {
+  white-space: nowrap;
 }
 
 .rounded-md {
