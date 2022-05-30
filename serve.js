@@ -9,23 +9,22 @@ esbuild.serve({
   servedir: 'public',
 }, {
   entryPoints: ['src/index.tsx'],
-  outdir: 'public/dist',
+  outfile: 'public/application.js',
   bundle: true,
-}).then(result => {
+}).then((result) => {
   // The result tells us where esbuild's local server is
-  const {host, port} = result
+  const { host, port } = result;
   const proxy = httpProxy.createProxyServer({});
 
   // Then start a proxy server on port 3000
   http.createServer((req, res) => {
-
     const options = {
       hostname: host,
-      port: port,
+      port,
       path: req.url,
       method: req.method,
       headers: req.headers,
-    }
+    };
 
     if (req.url && req.url.startsWith('/api')) {
       req.url = req.url.slice(4);
@@ -34,10 +33,10 @@ esbuild.serve({
     }
 
     // Forward each incoming request to esbuild
-    const proxyReq = http.request(options, proxyRes => {
+    const proxyReq = http.request(options, (proxyRes) => {
       // If esbuild returns "not found", fall back to /
       if (proxyRes.statusCode === 404) {
-        const redirectReq = http.request({ ...options, path: "/" }, (proxyRes2) => {
+        const redirectReq = http.request({ ...options, path: '/' }, (proxyRes2) => {
           // Forward the response from esbuild to the client
           res.writeHead(proxyRes2.statusCode, proxyRes2.headers);
           proxyRes2.pipe(res, { end: true });

@@ -7,7 +7,9 @@
     "tailwind-dev": "CHOKIDAR_USEPOLLING=1 npx tailwindcss -i ./src/index.css -o ./public/style.css --watch",
     "update-journal-css": "cp src/journal.css public/journal.css",
     "typecheck": "tsc --noEmit -p ./tsconfig.json",
-    "stylecheck": "eslint --ext ts,tsx src"
+    "stylecheck": "eslint --ext ts,tsx src",
+    "build:css": "npx tailwindcss -i ./src/index.css -o ./public/style.css",
+    "build:js": "esbuild src/index.tsx --bundle --minify --outfile=public/application.js"
   },
   "author": "",
   "license": "ISC",
