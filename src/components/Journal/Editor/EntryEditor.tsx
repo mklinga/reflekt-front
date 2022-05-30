@@ -1,41 +1,10 @@
 import * as React from 'react';
 import { JournalEntryType } from '../../../types/types';
+import countWords from '../../../utils/wordcount';
 
 type Props = {
   value: string;
   updateEntry: React.Dispatch<React.SetStateAction<JournalEntryType>>;
-}
-
-function isWhiteSpace(character: string) {
-  return (character === '\n' || character === ' ');
-}
-
-/* There is ABSOLUTELY no need for this to be async, but I wanted to do it this way */
-async function countWords(text: string) {
-  return new Promise((resolve) => {
-    let count = 0;
-    let index = 0;
-    function loop() {
-      if (isWhiteSpace(text[index]) && !isWhiteSpace(text[index - 1])) {
-        count += 1;
-      }
-
-      index += 1;
-
-      if (index === text.length) {
-        if (!isWhiteSpace(text[index - 1])) {
-          count += 1;
-        }
-        resolve(count);
-      } else if (index % 100 === 0) {
-        setTimeout(loop, 0);
-      } else {
-        loop();
-      }
-    }
-
-    loop();
-  });
 }
 
 export default function EntryEditor(props: Props) {
@@ -44,10 +13,9 @@ export default function EntryEditor(props: Props) {
 
   React.useEffect(() => {
     countWords(value).then(setWordCount);
-  }, []);
+  }, [value]);
 
   function onChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
-    countWords(e.target.value).then(setWordCount);
     updateEntry((journalEntry) => ({ ...journalEntry, entry: e.target.value }));
   }
 
