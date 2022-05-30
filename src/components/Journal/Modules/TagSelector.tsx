@@ -34,7 +34,8 @@ export default function TagSelector({
   const addNewTag = () => setTagEditorVisible(!tagEditorVisible);
 
   const className = classes([
-    'absolute', 'w-full', visible ? 'visible' : 'hidden', 'border', 'border-dashed', 'border-black', 'bg-white', 'p-4',
+    'absolute', 'w-full', visible ? 'visible' : 'hidden', 'border', 'border-dashed', 'border-black',
+    'bg-white', 'p-4', 'z-10',
   ]);
 
   const handleClick = (tag: TagModuleDto) => (e: React.MouseEvent<HTMLButtonElement>) => {
