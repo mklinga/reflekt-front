@@ -1,33 +1,12 @@
 import * as React from 'react';
 import TextInput from '../Common/TextInput';
-
-async function doLogin(user: string, password: string): Promise<boolean> {
-  const data = new URLSearchParams();
-  data.append('user', user);
-  data.append('password', password);
-
-  const response = await fetch(
-    '/api/login',
-    {
-      method: 'POST',
-      body: data,
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    },
-  );
-
-  if (response.status === 200) {
-    window.location.replace('/');
-    return true;
-  }
-
-  return false;
-}
+import login from '../../services/login';
 
 function onChangeHandler(setterFn: React.Dispatch<React.SetStateAction<string>>) {
   return (e: React.ChangeEvent<HTMLInputElement>) => setterFn(e.target.value);
 }
 
-function onKeyPressHandler(loginHandler: () => Promise<void>) {
+function onEnterPress(loginHandler: () => Promise<void>) {
   return function handler(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key === 'Enter') {
       loginHandler();
@@ -42,8 +21,11 @@ export default function Login() {
 
   async function loginHandler() {
     setError(false);
-    const loginOk = await doLogin(name, password);
-    setError(!loginOk);
+    if (await login(name, password)) {
+      window.location.replace('/');
+    } else {
+      setError(true);
+    }
   }
 
   return (
@@ -55,7 +37,7 @@ export default function Login() {
           className="m-2 p-3"
           placeholder="Password"
           onChange={onChangeHandler(setPassword)}
-          onKeyPress={onKeyPressHandler(loginHandler)}
+          onKeyPress={onEnterPress(loginHandler)}
         />
       </div>
       <button type="button" onClick={loginHandler}>Login</button>
