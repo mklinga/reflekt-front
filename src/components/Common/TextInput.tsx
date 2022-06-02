@@ -2,6 +2,7 @@ import * as React from 'react';
 import classes from '../../utils/classes';
 
 type Props = {
+  autoFocus?: boolean;
   className?: string;
   placeholder?: string;
   defaultValue?: string;
@@ -11,13 +12,14 @@ type Props = {
 
 export default function TextInput(props: Props) {
   const {
-    placeholder, defaultValue, onChange, onKeyPress, className,
+    autoFocus, placeholder, defaultValue, onChange, onKeyPress, className,
   } = props;
 
   const finalClassName = classes(['border', className]);
 
   return (
     <input
+      autoFocus={autoFocus}
       type="text"
       className={finalClassName}
       placeholder={placeholder}
@@ -29,6 +31,7 @@ export default function TextInput(props: Props) {
 }
 
 TextInput.defaultProps = {
+  autoFocus: false,
   placeholder: undefined,
   defaultValue: undefined,
   onChange: undefined,

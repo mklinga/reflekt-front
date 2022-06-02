@@ -25,6 +25,7 @@ module.exports = {
   rules: {
     'react/jsx-filename-extension': [1, { extensions: ['.tsx'] }],
     'import/extensions': ['error', { ts: 'never', tsx: 'never' }],
+    'jsx-a11y/no-autofocus': 'off',
   },
   /* Eslint recommends turning no-undef off for typescript files in the documentation, see:
    * https://github.com/typescript-eslint/typescript-eslint/blob/main/docs/linting/TROUBLESHOOTING.md#i-get-errors-from-the-no-undef-rule-about-global-variables-not-being-defined-even-though-there-are-no-typescript-errors
