@@ -20,6 +20,11 @@ export default function Login() {
   const [error, setError] = React.useState(false);
 
   async function loginHandler() {
+    /* Need to have both set before even trying to login */
+    if (!name || !password) {
+      return;
+    }
+
     setError(false);
     if (await login(name, password)) {
       window.location.replace('/');
