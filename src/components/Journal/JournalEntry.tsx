@@ -29,13 +29,15 @@ function renderEntryView(
 
   return (
     <div>
-      <div className="flex py-3 items-center">
-        <span className="text-2xl">{mood}</span>
-        <span className="text-2xl flex-grow pl-3">{title}</span>
+      <div className="flex justify-between">
+        <span className="text-gray-400 text-sm">{entryDate.toLocaleDateString()}</span>
         <Link to={editLink}>
           <button type="button" className="pr-3">Edit</button>
         </Link>
-        <span className="text-gray-400 text-sm">{entryDate.toLocaleDateString()}</span>
+      </div>
+      <div className="flex py-3 items-center">
+        <span className="md:text-2xl">{mood}</span>
+        <span className="font-bold md:font-normal md:text-2xl flex-grow pl-3">{title}</span>
       </div>
       {moduleData.images ? <ImageModuleViewer data={moduleData.images} /> : null}
       {moduleData.tags ? <TagModuleViewer data={moduleData.tags} /> : null}

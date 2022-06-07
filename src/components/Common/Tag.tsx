@@ -15,7 +15,7 @@ export default function Tag(props: Props) {
     delete style.color;
     style.borderBottom = `1px solid ${color}`;
   }
-  const classes = simple ? 'text-xs text-gray-400 mr-1 p-1' : 'rounded-md px-1.5 py-0.5 text-xs mr-3';
+  const classes = simple ? 'text-xs text-gray-400 mr-1 p-1' : 'rounded-md px-1.5 py-0.5 text-xs mr-3 mb-2';
 
   return (
     <button onClick={onClick} type="button" className={classes} style={style}>

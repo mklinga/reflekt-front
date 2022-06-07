@@ -80,7 +80,7 @@ export default function ImageModuleEditor(props: Props) {
         <span>
           {data && data.length > 0 ? imageBar(data, updateModuleData) : 'No uploaded images'}
         </span>
-        <label htmlFor="imageUploadInput">
+        <label className="text-blue-600" htmlFor="imageUploadInput">
           Upload new image
           <input
             className="hidden"

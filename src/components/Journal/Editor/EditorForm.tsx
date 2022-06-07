@@ -49,12 +49,7 @@ export default function EditorForm(props: Props) {
 
   return (
     <div>
-      <div className="flex my-3">
-        <MoodPicker value={modifiedEntry.mood} updateEntry={handleEdit(updateEntry, setIsDirty)} />
-        <TitleEditor
-          value={modifiedEntry.title}
-          updateEntry={handleEdit(updateEntry, setIsDirty)}
-        />
+      <div className="flex justify-between">
         <DatePicker
           value={modifiedEntry.entryDate}
           updateEntry={handleEdit(updateEntry, setIsDirty)}
@@ -64,8 +59,14 @@ export default function EditorForm(props: Props) {
             isDirty={isDirty}
             saveHandler={() => save(modifiedEntry, modifiedModuleData, updateEntry, setIsDirty)}
           />
-
         </div>
+      </div>
+      <div className="flex my-3">
+        <MoodPicker value={modifiedEntry.mood} updateEntry={handleEdit(updateEntry, setIsDirty)} />
+        <TitleEditor
+          value={modifiedEntry.title}
+          updateEntry={handleEdit(updateEntry, setIsDirty)}
+        />
       </div>
       <ModuleDataEditor
         moduleData={modifiedModuleData}

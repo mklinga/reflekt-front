@@ -19,9 +19,9 @@ export default function JournalListItem(props: Props) {
   return (
     <Link to={linkUrl}>
       <div className="flex p-1 items-center hover:bg-purple-100 cursor-pointer">
-        <span className="text-2xl">{mood}</span>
+        <span className="text-lg md:text-2xl">{mood}</span>
         <div className="flex-grow flex flex-col pl-3 overflow-hidden text-ellipsis">
-          <span className="text-2xl overflow-hidden text-ellipsis mr-3 whitespace-nowrap">
+          <span className="md:text-2xl overflow-hidden text-ellipsis mr-3 whitespace-nowrap">
             {title}
           </span>
           <span className="hidden md:inline-block">

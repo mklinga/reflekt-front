@@ -33,7 +33,7 @@ export default function JournalListFilter(props: Props) {
         defaultValue={value}
         onChange={updateValue}
         onKeyPress={onKeyPress}
-        className="pl-6"
+        className="pl-6 w-full"
       />
     </div>
   );
