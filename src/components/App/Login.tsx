@@ -39,6 +39,7 @@ export default function Login() {
       <div>
         <TextInput autoFocus className="m-2 p-3" placeholder="Username" onChange={onChangeHandler(setName)} />
         <TextInput
+          type="password"
           className="m-2 p-3"
           placeholder="Password"
           onChange={onChangeHandler(setPassword)}

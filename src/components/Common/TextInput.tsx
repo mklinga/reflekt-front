@@ -4,15 +4,16 @@ import classes from '../../utils/classes';
 type Props = {
   autoFocus?: boolean;
   className?: string;
-  placeholder?: string;
   defaultValue?: string;
   onChange?: React.ChangeEventHandler;
   onKeyPress?: React.KeyboardEventHandler;
+  placeholder?: string;
+  type?: React.HTMLInputTypeAttribute;
 }
 
 export default function TextInput(props: Props) {
   const {
-    autoFocus, placeholder, defaultValue, onChange, onKeyPress, className,
+    autoFocus, placeholder, defaultValue, onChange, onKeyPress, className, type,
   } = props;
 
   const finalClassName = classes(['border', className]);
@@ -20,7 +21,7 @@ export default function TextInput(props: Props) {
   return (
     <input
       autoFocus={autoFocus}
-      type="text"
+      type={type}
       className={finalClassName}
       placeholder={placeholder}
       defaultValue={defaultValue}
@@ -32,9 +33,10 @@ export default function TextInput(props: Props) {
 
 TextInput.defaultProps = {
   autoFocus: false,
-  placeholder: undefined,
+  className: undefined,
   defaultValue: undefined,
   onChange: undefined,
   onKeyPress: undefined,
-  className: undefined,
+  placeholder: undefined,
+  type: 'text',
 };
