@@ -20,9 +20,13 @@ export default function JournalListItem(props: Props) {
     <Link to={linkUrl}>
       <div className="flex p-1 items-center hover:bg-purple-100 cursor-pointer">
         <span className="text-2xl">{mood}</span>
-        <div className="flex-grow pl-3">
-          <span className="text-2xl block">{title}</span>
-          <span>{tags ? tags.map((tag) => <Tag simple tag={tag} key={tag.id} />) : null}</span>
+        <div className="flex-grow flex flex-col pl-3 overflow-hidden text-ellipsis">
+          <span className="text-2xl overflow-hidden text-ellipsis mr-3 whitespace-nowrap">
+            {title}
+          </span>
+          <span className="hidden md:inline-block">
+            {tags ? tags.map((tag) => <Tag simple tag={tag} key={tag.id} />) : null}
+          </span>
         </div>
         {hasImages ? <span className="text-gray-400 mr-3"><ImageIcon /></span> : null}
         <span className="text-gray-400 text-sm">{entryDate.toLocaleDateString()}</span>

@@ -14,7 +14,7 @@ export default function TitleEditor(props: Props) {
   }
 
   return (
-    <span className="grow">
+    <span className="grow mr-3">
       <input
         className="text-2xl w-full"
         type="text"

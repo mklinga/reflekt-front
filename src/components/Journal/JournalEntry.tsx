@@ -46,9 +46,11 @@ function renderEntryView(
       {/* eslint-disable react/no-danger */}
       <div className="journal-document" dangerouslySetInnerHTML={{ __html: journalDocument }} />
       {/* eslint-enable react/no-danger */}
-      {previousLink ? <LinkComponent to={previousLink}>Previous</LinkComponent> : null}
-      {(previousLink && nextLink) ? ' - ' : null}
-      {nextLink ? <LinkComponent to={nextLink}>Next</LinkComponent> : null}
+      <div className="mt-9 mb-6">
+        {previousLink ? <LinkComponent to={previousLink}>Previous</LinkComponent> : null}
+        {(previousLink && nextLink) ? ' - ' : null}
+        {nextLink ? <LinkComponent to={nextLink}>Next</LinkComponent> : null}
+      </div>
     </div>
   );
 }
