@@ -10,13 +10,16 @@ type Props = {
 export default function DatePicker(props: Props) {
   const { value, updateEntry } = props;
 
-  function onChange(e: React.ChangeEvent<HTMLInputElement>) {
-    updateEntry((entry) => ({ ...entry, entryDate: new Date(Date.parse(e.target.value)) }));
+  function onChange(changeEvent: React.ChangeEvent<HTMLInputElement>) {
+    updateEntry((entry) => ({
+      ...entry,
+      entryDate: new Date(Date.parse(changeEvent.target.value)),
+    }));
   }
 
   return (
     <div className="flex align-center">
-      <input type="date" value={getISODateString(value)} onChange={onChange} />
+      <input type="date" value={getISODateString(value)} onChange={onChange} required />
     </div>
   );
 }
