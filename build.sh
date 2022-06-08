@@ -1,9 +1,13 @@
-#!/bin/sh
+#!/bin/bash
 
 set -e
 
-npm run typecheck
-npm run stylecheck
+if [ "$1" != "--skipChecks" ]
+then
+  echo "Running type & style checks (add --skipChecks to bypass)"
+  npm run typecheck
+  npm run stylecheck
+fi
 
 npm run build:css
 npm run build:js
