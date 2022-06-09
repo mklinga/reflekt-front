@@ -2,16 +2,14 @@ import { marked } from 'marked';
 import * as React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import useJournalEntry from '../../hooks/useJournalEntry';
-import useJournalModules from '../../hooks/useJournalModules';
-import { JournalEntryType, JournalModuleDataType, JournalNavigationData } from '../../types/types';
+import { JournalEntryType, JournalNavigationData } from '../../types/types';
 import LoaderUntilResolved from '../LoaderUntilResolved';
-import ImageModuleViewer from './Modules/ImageModuleViewer';
-import TagModuleViewer from './Modules/TagModuleViewer';
+import ImageViewer from './Modules/ImageViewer';
+import TagViewer from './Modules/TagViewer';
 import LinkComponent from '../Common/Link';
 
 function renderEntryView(
   journalEntry: JournalEntryType,
-  moduleData: JournalModuleDataType,
   navigationData: JournalNavigationData,
 ) {
   const {
@@ -20,6 +18,8 @@ function renderEntryView(
     title,
     entry,
     entryDate,
+    tags,
+    images,
   } = journalEntry;
 
   const journalDocument = marked.parse(entry);
@@ -39,8 +39,8 @@ function renderEntryView(
         <span className="md:text-2xl">{mood}</span>
         <span className="font-bold md:font-normal md:text-2xl flex-grow pl-3">{title}</span>
       </div>
-      {moduleData.images ? <ImageModuleViewer data={moduleData.images} /> : null}
-      {moduleData.tags ? <TagModuleViewer data={moduleData.tags} /> : null}
+      {images ? <ImageViewer data={images} /> : null}
+      {tags ? <TagViewer data={tags} /> : null}
       {/*
         We cannot use tailwind to style the markdown document (not possible to inject style classes)
         so we will have to use "real" class name and external styling (see journal.css)
@@ -62,12 +62,11 @@ export default function JournalEntry() {
   const {
     journalEntry, navigationData, loadingStatus: entryLoadingStatus,
   } = useJournalEntry(params.id);
-  const { moduleData, loadingStatus: moduleLoadingStatus } = useJournalModules(params.id);
 
   return (
     <LoaderUntilResolved
-      loadingStatus={[entryLoadingStatus, moduleLoadingStatus]}
-      render={() => renderEntryView(journalEntry, moduleData, navigationData)}
+      loadingStatus={[entryLoadingStatus]}
+      render={() => renderEntryView(journalEntry, navigationData)}
     />
   );
 }

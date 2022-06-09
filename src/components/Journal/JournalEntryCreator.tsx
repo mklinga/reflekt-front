@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { JournalEntryType, JournalModuleDataType } from '../../types/types';
+import { JournalEntryType } from '../../types/types';
 import EditorForm from './Editor/EditorForm';
 
 export default function JournalEntryCreator() {
@@ -10,14 +10,11 @@ export default function JournalEntryCreator() {
     entryDate: new Date(),
     createdAt: null,
     updatedAt: null,
-  };
-
-  const moduleData: JournalModuleDataType = {
     tags: [],
     images: [],
   };
 
   return (
-    <EditorForm journalEntry={journalEntry} moduleData={moduleData} />
+    <EditorForm journalEntry={journalEntry} />
   );
 }

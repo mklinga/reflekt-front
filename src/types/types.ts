@@ -22,6 +22,11 @@ export type JournalNavigationData = {
   previous: string | null;
 }
 
+export type ImageModuleDto = {
+  id: string;
+  name: string;
+}
+
 export type JournalEntryType = {
   id?: string;
   mood: string;
@@ -30,6 +35,8 @@ export type JournalEntryType = {
   entryDate: Date;
   createdAt: Date;
   updatedAt: Date;
+  tags: TagModuleDto[];
+  images: ImageModuleDto[];
 }
 
 export type JournalEntryDto = {
@@ -40,19 +47,11 @@ export type JournalEntryDto = {
   entryDate: string;
   createdAt: string;
   updatedAt: string;
+  tags: TagModuleDto[];
+  images: ImageModuleDto[];
 }
 
 export type Modules = 'images' | 'tags';
-
-export type ImageModuleDto = {
-  id: string;
-  name: string;
-}
-
-export type JournalModuleDataType = {
-  images?: ImageModuleDto[];
-  tags?: TagModuleDto[];
-}
 
 export type SearchResult = {
   id: string;
@@ -67,11 +66,6 @@ export type LoadingStatus = 'loading' | 'resolved';
 export type JournalEntryHook = {
   journalEntry: JournalEntryType | null;
   navigationData: JournalNavigationData | null;
-  loadingStatus: LoadingStatus;
-}
-
-export type JournalModulesHook = {
-  moduleData: JournalModuleDataType | null;
   loadingStatus: LoadingStatus;
 }
 

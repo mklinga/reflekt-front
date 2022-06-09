@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { TagModuleDto, JournalModuleDataType } from '../../../types/types';
+import { TagModuleDto, JournalEntryType } from '../../../types/types';
 import classes from '../../../utils/classes';
 import Tag from '../../Common/Tag';
 import TagSelector from './TagSelector';
@@ -7,15 +7,14 @@ import TagSelector from './TagSelector';
 type Props = {
   data: TagModuleDto[];
   entryId: string;
-  updateModuleData: React.Dispatch<React.SetStateAction<JournalModuleDataType>>;
-  setIsDirty: React.Dispatch<React.SetStateAction<boolean>>;
+  updateEntry: React.Dispatch<React.SetStateAction<JournalEntryType>>;
 }
 
 function toggleTag(
-  updateModuleData: React.Dispatch<React.SetStateAction<JournalModuleDataType>>,
+  updateEntry: React.Dispatch<React.SetStateAction<JournalEntryType>>,
 ) {
   return function toggle(tag: TagModuleDto) {
-    updateModuleData((data: JournalModuleDataType) => {
+    updateEntry((data: JournalEntryType) => {
       const existingTags = data.tags || [];
       const hasTag = existingTags.find((existingTag) => existingTag.id === tag.id);
       return {
@@ -26,9 +25,9 @@ function toggleTag(
   };
 }
 
-export default function TagModuleEditor(props: Props) {
+export default function TagEditor(props: Props) {
   const {
-    data, entryId, updateModuleData, setIsDirty,
+    data, entryId, updateEntry,
   } = props;
   const [tagSelectorVisible, setTagSelectorVisible] = React.useState(false);
 
@@ -56,8 +55,7 @@ export default function TagModuleEditor(props: Props) {
           </div>
           <TagSelector
             visible={tagSelectorVisible}
-            setIsDirty={setIsDirty}
-            toggleTagFn={toggleTag(updateModuleData)}
+            toggleTagFn={toggleTag(updateEntry)}
           />
         </div>
       </div>

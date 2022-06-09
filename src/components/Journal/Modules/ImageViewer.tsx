@@ -9,7 +9,7 @@ function getImageUrl(image: string): string {
   return `/api/images/${image}`;
 }
 
-export default function ImageModuleViewer(props: Props) {
+export default function ImageViewer(props: Props) {
   const { data } = props;
 
   if (!Array.isArray(data) || data.length === 0) {

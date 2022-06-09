@@ -1,15 +1,15 @@
 import * as React from 'react';
-import { ImageModuleDto, JournalModuleDataType } from '../../../types/types';
+import { ImageModuleDto, JournalEntryType } from '../../../types/types';
 
 type Props = {
   data: ImageModuleDto[];
   entryId: string;
-  updateModuleData: React.Dispatch<React.SetStateAction<JournalModuleDataType>>;
+  updateEntry: React.Dispatch<React.SetStateAction<JournalEntryType>>;
 }
 
 function removeImage(
   imageId: string,
-  updateModuleData: React.Dispatch<React.SetStateAction<JournalModuleDataType>>,
+  updateEntry: React.Dispatch<React.SetStateAction<JournalEntryType>>,
 ) {
   return async function onClick() {
     const response = await fetch(`/api/images/${imageId}`, { method: 'DELETE' });
@@ -22,7 +22,7 @@ function removeImage(
       return;
     }
 
-    updateModuleData(
+    updateEntry(
       (data) => ({ ...data, images: data.images.filter((image) => image.id !== imageId) }),
     );
   };
@@ -30,12 +30,12 @@ function removeImage(
 
 function imageBar(
   data: ImageModuleDto[],
-  updateModuleData: React.Dispatch<React.SetStateAction<JournalModuleDataType>>,
+  updateEntry: React.Dispatch<React.SetStateAction<JournalEntryType>>,
 ) {
   return (
     <p>
       {data.map((image) => (
-        <button key={image.id} type="button" onClick={removeImage(image.id, updateModuleData)}>
+        <button key={image.id} type="button" onClick={removeImage(image.id, updateEntry)}>
           <img className="h-40 mr-1" src={`/api/images/${image.id}`} alt={image.name} />
         </button>
       ))}
@@ -45,7 +45,7 @@ function imageBar(
 
 function getOnChangeFunction(
   entryId: string,
-  updateModuleData: React.Dispatch<React.SetStateAction<JournalModuleDataType>>,
+  updateEntry: React.Dispatch<React.SetStateAction<JournalEntryType>>,
 ) {
   return async function onChange(event: React.ChangeEvent<HTMLInputElement>) {
     /* TODO: move all this to some service */
@@ -63,12 +63,12 @@ function getOnChangeFunction(
     }
 
     const savedImage = await response.json() as ImageModuleDto;
-    updateModuleData((data) => ({ ...data, images: [...data.images, savedImage] }));
+    updateEntry((data) => ({ ...data, images: [...data.images, savedImage] }));
   };
 }
 
-export default function ImageModuleEditor(props: Props) {
-  const { data, entryId, updateModuleData } = props;
+export default function ImageEditor(props: Props) {
+  const { data, entryId, updateEntry } = props;
 
   if (!entryId) {
     return null;
@@ -78,7 +78,7 @@ export default function ImageModuleEditor(props: Props) {
     <div>
       <div className="flex justify-between items-center">
         <span>
-          {data && data.length > 0 ? imageBar(data, updateModuleData) : 'No uploaded images'}
+          {data && data.length > 0 ? imageBar(data, updateEntry) : 'No uploaded images'}
         </span>
         <label className="text-blue-600" htmlFor="imageUploadInput">
           Upload new image
@@ -86,7 +86,7 @@ export default function ImageModuleEditor(props: Props) {
             className="hidden"
             id="imageUploadInput"
             type="file"
-            onChange={getOnChangeFunction(entryId, updateModuleData)}
+            onChange={getOnChangeFunction(entryId, updateEntry)}
           />
         </label>
       </div>

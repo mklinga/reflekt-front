@@ -6,7 +6,7 @@ type Props = {
   data: TagModuleDto[];
 };
 
-export default function TagModuleViewer(props: Props) {
+export default function TagViewer(props: Props) {
   const { data } = props;
 
   if (!Array.isArray(data) || data.length === 0) {

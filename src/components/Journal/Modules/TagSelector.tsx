@@ -6,7 +6,6 @@ import TagEditorInline from './TagEditorInline';
 
 type TagSelectorProps = {
   visible: boolean,
-  setIsDirty: React.Dispatch<React.SetStateAction<boolean>>
   toggleTagFn: (tag: TagModuleDto) => void,
 }
 
@@ -20,7 +19,7 @@ function sortByColorAndName(tags: TagModuleDto[]): TagModuleDto[] {
 }
 
 export default function TagSelector({
-  visible, setIsDirty, toggleTagFn,
+  visible, toggleTagFn,
 }: TagSelectorProps) {
   const [allTags, setAllTags] = React.useState([]);
   const [tagEditorVisible, setTagEditorVisible] = React.useState<boolean>(false);
@@ -39,7 +38,6 @@ export default function TagSelector({
   ]);
 
   const handleClick = (tag: TagModuleDto) => (e: React.MouseEvent<HTMLButtonElement>) => {
-    setIsDirty(true);
     toggleTagFn(tag);
     e.preventDefault();
   };
