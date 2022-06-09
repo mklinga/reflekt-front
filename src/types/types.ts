@@ -69,6 +69,16 @@ export type JournalEntryHook = {
   loadingStatus: LoadingStatus;
 }
 
+export type DashboardData = {
+  entryCount: number;
+  wordCount: number;
+}
+
+export type DashboardDataHook = {
+  dashboardData: DashboardData;
+  loadingStatus: LoadingStatus;
+}
+
 export type SearchResultHook = {
   searchResults: SearchResult[];
   loadingStatus: LoadingStatus;
