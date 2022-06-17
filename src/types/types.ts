@@ -71,7 +71,7 @@ export type JournalEntryHook = {
 
 export type DashboardData = {
   entryCount: number;
-  wordCount: number;
+  updateCount: number;
 }
 
 export type DashboardDataHook = {
