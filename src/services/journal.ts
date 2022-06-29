@@ -30,9 +30,8 @@ export async function fetchJournalEntry(
 }
 
 type SetAllEntriesData = React.Dispatch<React.SetStateAction<JournalListItemType[]>>;
-export const fetchAllJournalEntries = async (setData: SetAllEntriesData, filter: string) => {
-  const params = querystring.stringify({ search: filter });
-  const endpoint = `/api/journal${params}`;
+export const fetchAllJournalEntries = async (setData: SetAllEntriesData) => {
+  const endpoint = '/api/journal';
   const [data, status] = await fetchJsonData<JournalListItemDto[]>(endpoint);
   switch (status) {
     case 'SUCCESS':

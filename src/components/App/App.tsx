@@ -4,32 +4,34 @@ import { useSelector } from 'react-redux';
 import Link from '../Common/Link';
 import NavigationLinks from './NavigationLinks';
 import { selectUsername } from '../../store/user/userSelectors';
+import classes from '../../utils/classes';
 
 function isLocalHost() {
   return window.location.hostname.match(/localhost/);
 }
 
 export default function App() {
-  const header = isLocalHost()
-    ? <h1 className="text-xl font-medium text-white bg-cyan-600 border-b border-black p-3">Reflekt - DEVELOPMENT</h1>
-    : <h1 className="text-xl font-medium text-black border-b border-black py-3">Reflekt</h1>;
-
   const username = useSelector(selectUsername);
+  const headerText = `Reflekt${isLocalHost() ? ' - DEVELOPMENT' : ''}`;
+  const headerClass = classes([
+    'text-xl font-medium border-b border-black p-3',
+    isLocalHost() ? 'text-white bg-cyan-600' : 'text-black',
+  ]);
 
   return (
     <>
       <div className="grow">
         <header className="mb-3">
-          <Link to="/">{header}</Link>
+          <Link to="/">
+            <h1 className={headerClass}>{headerText}</h1>
+          </Link>
           <NavigationLinks />
         </header>
         <Outlet />
       </div>
       <footer className="text-sm py-6">
         <hr />
-        Logged in as
-        {' '}
-        {username}
+        {`Logged in as ${username}`}
       </footer>
     </>
   );

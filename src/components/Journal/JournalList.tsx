@@ -9,14 +9,13 @@ import JournalListItem from './JournalListItem';
 export default function JournalList() {
   const [loaded, setLoaded] = useState(false);
   const [journalEntries, setJournalEntries] = useState<JournalListItemType[]>(null);
-  const [filterValue, setFilterValue] = React.useState('');
 
   useEffect(() => {
     setLoaded(false);
     setJournalEntries(null);
-    fetchAllJournalEntries(setJournalEntries, filterValue)
+    fetchAllJournalEntries(setJournalEntries)
       .then(() => setLoaded(true));
-  }, [filterValue]);
+  }, []);
 
   return (
     <div>
@@ -24,7 +23,7 @@ export default function JournalList() {
         <Link className="text-blue-600 mr-3 whitespace-nowrap" to="/journal/new">
           + Add new entry
         </Link>
-        <JournalListFilter value={filterValue} setValue={setFilterValue} />
+        <JournalListFilter />
       </div>
       {loaded
         ? journalEntries.map((entry) => <JournalListItem key={entry.id} entry={entry} />)
