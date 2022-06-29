@@ -3,14 +3,11 @@ import {
   FetchStatus,
   JournalEntryDto,
   JournalEntryType,
-  JournalListItemDto,
-  JournalListItemType,
   JournalNavigationData,
   NavigableJournalEntry,
 } from '../types/types';
 import { fetchJsonData, putJsonData, postJsonData } from '../utils/fetch';
 import * as converters from '../utils/converters';
-import * as querystring from '../utils/querystring';
 
 export async function fetchJournalEntry(
   id: string,
@@ -21,7 +18,7 @@ export async function fetchJournalEntry(
   const [data, status] = await fetchJsonData<NavigableJournalEntry>(fetchUrl);
   switch (status) {
     case 'SUCCESS':
-      setData(converters.journalEntry.fromDto(data.data));
+      setData(data.data);
       setNavigationData(data.navigationData);
       break;
     default:
@@ -29,16 +26,16 @@ export async function fetchJournalEntry(
   }
 }
 
-type SetAllEntriesData = React.Dispatch<React.SetStateAction<JournalListItemType[]>>;
-export const fetchAllJournalEntries = async (setData: SetAllEntriesData) => {
+export const fetchAllJournalEntries = async () => {
   const endpoint = '/api/journal';
-  const [data, status] = await fetchJsonData<JournalListItemDto[]>(endpoint);
+  const [data, status] = await fetchJsonData<JournalEntryType[]>(endpoint);
   switch (status) {
     case 'SUCCESS':
-      setData(data.map(converters.journalListItem.fromDto));
+      return data;
       break;
+    // TODO: Handler errors
     default:
-    // TODO: do something
+      return [];
   }
 };
 
@@ -61,5 +58,5 @@ export async function saveJournalEntry(entry: JournalEntryType): Promise<Journal
     throw new Error('Save/update failed!');
   }
 
-  return converters.journalEntry.fromDto(data);
+  return data;
 }

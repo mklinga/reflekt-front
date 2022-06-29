@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { JournalEntryType } from '../../../types/types';
-import { getISODateString } from '../../../utils/date';
+import { getISODateString, parseStringToDate } from '../../../utils/date';
 
 type Props = {
   value: Date;
@@ -13,7 +13,7 @@ export default function DatePicker(props: Props) {
   function onChange(changeEvent: React.ChangeEvent<HTMLInputElement>) {
     updateEntry((entry) => ({
       ...entry,
-      entryDate: new Date(Date.parse(changeEvent.target.value)),
+      entryDate: getISODateString(parseStringToDate(changeEvent.target.value)),
     }));
   }
 

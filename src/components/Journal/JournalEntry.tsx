@@ -7,6 +7,7 @@ import LoaderUntilResolved from '../LoaderUntilResolved';
 import ImageViewer from './Modules/ImageViewer';
 import TagViewer from './Modules/TagViewer';
 import LinkComponent from '../Common/Link';
+import { dateStringToLocale } from '../../utils/date';
 
 function renderEntryView(
   journalEntry: JournalEntryType,
@@ -30,7 +31,7 @@ function renderEntryView(
   return (
     <div>
       <div className="flex justify-between">
-        <span className="text-gray-400 text-sm">{entryDate.toLocaleDateString()}</span>
+        <span className="text-gray-400 text-sm">{dateStringToLocale(entryDate)}</span>
         <Link to={editLink}>
           <button type="button" className="pr-3">Edit</button>
         </Link>

@@ -1,8 +1,14 @@
 {
-    "compilerOptions": {
-        "noImplicitAny": true,
-        "jsx": "react",
-        "lib": ["ES2021", "DOM"]
-    },
-    "include": ["src/**/*"]
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "jsx": "react",
+    "lib": [
+      "ES2021",
+      "DOM"
+    ],
+    "esModuleInterop": true
+  },
+  "include": [
+    "src/**/*"
+  ]
 }

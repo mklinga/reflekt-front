@@ -1,20 +1,28 @@
 import * as React from 'react';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchAllJournalEntries } from '../../services/journal';
-import { JournalListItemType } from '../../types/types';
+import { selectListOfEntries, selectListOfEntriesLoaded } from '../../store/journalEntry/journalEntrySelectors';
+import { setListOfEntriesData, setListOfEntriesLoaded } from '../../store/journalEntry/journalEntrySlice';
+import { JournalEntryType } from '../../types/types';
 import Link from '../Common/Link';
 import JournalListFilter from './JournalListFilter';
 import JournalListItem from './JournalListItem';
 
 export default function JournalList() {
-  const [loaded, setLoaded] = useState(false);
-  const [journalEntries, setJournalEntries] = useState<JournalListItemType[]>(null);
+  const dispatch = useDispatch();
+  const journalEntries = useSelector(selectListOfEntries);
+  const loaded = useSelector(selectListOfEntriesLoaded);
 
   useEffect(() => {
-    setLoaded(false);
-    setJournalEntries(null);
-    fetchAllJournalEntries(setJournalEntries)
-      .then(() => setLoaded(true));
+    if (loaded) {
+      return;
+    }
+
+    fetchAllJournalEntries().then((data: JournalEntryType[]) => {
+      dispatch(setListOfEntriesData(data));
+      dispatch(setListOfEntriesLoaded(true));
+    });
   }, []);
 
   return (

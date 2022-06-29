@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { JournalEntryType } from '../../types/types';
+import { getISODateString } from '../../utils/date';
 import EditorForm from './Editor/EditorForm';
 
 export default function JournalEntryCreator() {
@@ -7,7 +8,7 @@ export default function JournalEntryCreator() {
     mood: '😶',
     title: 'It\'s a new day',
     entry: 'Tell your story',
-    entryDate: new Date(),
+    entryDate: getISODateString(new Date()),
     createdAt: null,
     updatedAt: null,
     tags: [],

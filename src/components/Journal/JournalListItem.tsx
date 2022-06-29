@@ -1,17 +1,18 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import ImageIcon from '../../icons/ImageIcon';
-import { JournalListItemType } from '../../types/types';
+import { JournalEntryType } from '../../types/types';
+import { dateStringToLocale } from '../../utils/date';
 import Tag from '../Common/Tag';
 
 type Props = {
-  entry: JournalListItemType;
+  entry: JournalEntryType;
 }
 
 export default function JournalListItem(props: Props) {
   const {
     entry: {
-      id, mood, title, entryDate, hasImages, tags,
+      id, mood, title, entryDate, images, tags,
     },
   } = props;
   const linkUrl = `/journal/${id}`;
@@ -28,8 +29,8 @@ export default function JournalListItem(props: Props) {
             {tags ? tags.map((tag) => <Tag simple tag={tag} key={tag.id} />) : null}
           </span>
         </div>
-        {hasImages ? <span className="text-gray-400 mr-3"><ImageIcon /></span> : null}
-        <span className="text-gray-400 text-sm">{entryDate.toLocaleDateString()}</span>
+        {images.length > 0 ? <span className="text-gray-400 mr-3"><ImageIcon /></span> : null}
+        <span className="text-gray-400 text-sm">{dateStringToLocale(entryDate)}</span>
       </div>
     </Link>
   );

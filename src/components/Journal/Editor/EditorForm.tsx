@@ -9,6 +9,7 @@ import { usePrompt } from '../../../utils/routing';
 import SaveButton from './SaveButton';
 import TagEditor from '../Modules/TagEditor';
 import ImageEditor from '../Modules/ImageEditor';
+import { parseStringToDate } from '../../../utils/date';
 
 type Props = {
   journalEntry: JournalEntryType;
@@ -45,7 +46,7 @@ export default function EditorForm(props: Props) {
     <div>
       <div className="flex justify-between">
         <DatePicker
-          value={modifiedEntry.entryDate}
+          value={parseStringToDate(modifiedEntry.entryDate)}
           updateEntry={handleEdit(updateEntry, setIsDirty)}
         />
         <div className="flex items-center">
