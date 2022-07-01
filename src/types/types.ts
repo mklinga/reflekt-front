@@ -26,18 +26,6 @@ export type JournalEntryType = {
   images: ImageModuleDto[];
 }
 
-export type JournalEntryDto = {
-  id?: string;
-  mood: string;
-  title: string;
-  entry: string;
-  entryDate: string;
-  createdAt: string;
-  updatedAt: string;
-  tags: TagModuleDto[];
-  images: ImageModuleDto[];
-}
-
 export type Modules = 'images' | 'tags';
 
 export type SearchResult = {
@@ -72,6 +60,6 @@ export type SearchResultHook = {
 }
 
 export type NavigableJournalEntry = {
-  data: JournalEntryDto;
+  data: JournalEntryType;
   navigationData: JournalNavigationData;
 }

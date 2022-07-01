@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {
   FetchStatus,
-  JournalEntryDto,
   JournalEntryType,
   JournalNavigationData,
   NavigableJournalEntry,
@@ -11,17 +10,18 @@ import * as converters from '../utils/converters';
 
 export async function fetchJournalEntry(
   id: string,
-  setData: React.Dispatch<React.SetStateAction<JournalEntryType>>,
+  // setData: React.Dispatch<React.SetStateAction<JournalEntryType>>,
   setNavigationData: React.Dispatch<React.SetStateAction<JournalNavigationData>>,
 ) {
   const fetchUrl = `/api/journal/${id}`;
   const [data, status] = await fetchJsonData<NavigableJournalEntry>(fetchUrl);
   switch (status) {
     case 'SUCCESS':
-      setData(data.data);
+      // setData(data.data);
       setNavigationData(data.navigationData);
-      break;
+      return data.data;
     default:
+      return null;
     // TODO: do something
   }
 }
