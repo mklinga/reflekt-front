@@ -39,17 +39,17 @@ export const fetchAllJournalEntries = async () => {
   }
 };
 
-type EntrySaverType = [JournalEntryDto, FetchStatus];
+type EntrySaverType = [JournalEntryType, FetchStatus];
 async function updateJournalEntry(entry: JournalEntryType): Promise<EntrySaverType> {
   const putUrl = `/api/journal/${entry.id}`;
   const dto = converters.journalEntry.toDto(entry);
-  return putJsonData<JournalEntryDto>(putUrl, dto);
+  return putJsonData<JournalEntryType>(putUrl, dto);
 }
 
 async function createJournalEntry(entry: JournalEntryType): Promise<EntrySaverType> {
   const postUrl = '/api/journal/';
   const dto = converters.journalEntry.toDto(entry);
-  return postJsonData<JournalEntryDto>(postUrl, dto);
+  return postJsonData<JournalEntryType>(postUrl, dto);
 }
 
 export async function saveJournalEntry(entry: JournalEntryType): Promise<JournalEntryType> {

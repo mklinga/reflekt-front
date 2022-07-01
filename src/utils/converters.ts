@@ -1,9 +1,9 @@
 import {
-  JournalEntryType, JournalEntryDto,
+  JournalEntryType,
 } from '../types/types';
 import { getISODateString, parseStringToDate } from './date';
 
-function journalEntryTypeDtoConverter(journalEntry: JournalEntryType): JournalEntryDto {
+function journalEntryTypeDtoConverter(journalEntry: JournalEntryType) {
   const createdAt = journalEntry.createdAt === null
     ? null
     : parseStringToDate(journalEntry.createdAt).toISOString().replace('T', ' ');

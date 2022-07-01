@@ -14,8 +14,8 @@ export default function App() {
   const username = useSelector(selectUsername);
   const headerText = `Reflekt${isLocalHost() ? ' - DEVELOPMENT' : ''}`;
   const headerClass = classes([
-    'text-xl font-medium border-b border-black p-3',
-    isLocalHost() ? 'text-white bg-cyan-600' : 'text-black',
+    'text-xl font-medium border-b border-black',
+    isLocalHost() ? 'text-white bg-cyan-600 p-3' : 'text-black py-3',
   ]);
 
   return (
