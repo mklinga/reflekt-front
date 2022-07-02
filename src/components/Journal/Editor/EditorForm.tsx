@@ -21,9 +21,11 @@ type Props = {
 async function save(
   draft: JournalEntryType,
   dispatch: Dispatch<AnyAction>,
+  updateDraft: React.Dispatch<React.SetStateAction<JournalEntryType>>,
   setIsDirty: React.Dispatch<React.SetStateAction<boolean>>,
 ) {
   const savedEntry = await saveJournalEntry(draft);
+  updateDraft(savedEntry);
   dispatch(updateEntry(savedEntry));
   setIsDirty(false);
 }
@@ -56,7 +58,7 @@ export default function EditorForm(props: Props) {
         <div className="flex items-center">
           <SaveButton
             isDirty={isDirty}
-            saveHandler={() => save(draft, dispatch, setIsDirty)}
+            saveHandler={() => save(draft, dispatch, updateDraft, setIsDirty)}
           />
         </div>
       </div>
