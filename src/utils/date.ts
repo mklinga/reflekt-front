@@ -19,5 +19,5 @@ export function dateStringToLocale(dateString: string) {
     return '';
   }
 
-  return date.toLocaleDateString();
+  return date.toLocaleDateString(undefined, { dateStyle: 'full' });
 }
