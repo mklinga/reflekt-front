@@ -6,7 +6,7 @@ function getLinkClassNames(location: Location, linkTo: string) {
   const isActive = location.pathname.startsWith(linkTo);
   const color = isActive ? 'text-black' : 'text-blue-600';
 
-  return `${color} underline`;
+  return `${color} mr-3`;
 }
 
 export default function NavigationLinks() {
@@ -15,6 +15,7 @@ export default function NavigationLinks() {
   return (
     <div>
       <Link className={getLinkClassNames(location, '/journal')} to="/journal">Journals</Link>
+      <Link className={getLinkClassNames(location, '/contacts')} to="/contacts">Contacts</Link>
     </div>
   );
 }

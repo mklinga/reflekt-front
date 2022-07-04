@@ -18,6 +18,8 @@ import Dashboard from './components/App/Dashboard';
 import JournalEntryCreator from './components/Journal/JournalEntryCreator';
 import SearchPage from './components/Search/SearchPage';
 import { setUsername } from './store/user/userSlice';
+import Contacts from './components/Contacts/Contacts';
+import ContactCreator from './components/Contacts/ContactCreator';
 
 const mainElement = document.querySelector('body > main');
 mainElement.innerHTML = 'Loading...';
@@ -39,6 +41,8 @@ async function load() {
               <Route path="journal/:id/edit" element={<JournalEntryEditor />} />
               <Route path="journal/new" element={<JournalEntryCreator />} />
               <Route path="search" element={<SearchPage />} />
+              <Route path="contacts" element={<Contacts />} />
+              <Route path="contacts/new" element={<ContactCreator />} />
             </Route>
             <Route path="*" element={<span>404, that&apos;s all.</span>} />
           </Routes>

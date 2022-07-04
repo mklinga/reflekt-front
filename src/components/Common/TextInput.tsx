@@ -5,6 +5,7 @@ type Props = {
   autoFocus?: boolean;
   className?: string;
   defaultValue?: string;
+  name?: string;
   onChange?: React.ChangeEventHandler;
   onKeyPress?: React.KeyboardEventHandler;
   placeholder?: string;
@@ -13,7 +14,7 @@ type Props = {
 
 export default function TextInput(props: Props) {
   const {
-    autoFocus, placeholder, defaultValue, onChange, onKeyPress, className, type,
+    autoFocus, placeholder, defaultValue, onChange, onKeyPress, className, type, name,
   } = props;
 
   const finalClassName = classes(['border', className]);
@@ -22,6 +23,7 @@ export default function TextInput(props: Props) {
     <input
       autoFocus={autoFocus}
       type={type}
+      name={name}
       className={finalClassName}
       placeholder={placeholder}
       defaultValue={defaultValue}
@@ -35,6 +37,7 @@ TextInput.defaultProps = {
   autoFocus: false,
   className: undefined,
   defaultValue: undefined,
+  name: undefined,
   onChange: undefined,
   onKeyPress: undefined,
   placeholder: undefined,

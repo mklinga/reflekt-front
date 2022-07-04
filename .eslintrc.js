@@ -28,6 +28,10 @@ module.exports = {
     'jsx-a11y/no-autofocus': 'off',
     'no-param-reassign': ['error', { props: true, ignorePropertyModificationsFor: ['state'] }],
     'import/prefer-default-export': 'off',
+    'jsx-a11y/label-has-associated-control': [2, {
+      controlComponents: ['TextInput'],
+      depth: 3,
+    }],
   },
   /* Eslint recommends turning no-undef off for typescript files in the documentation, see:
    * https://github.com/typescript-eslint/typescript-eslint/blob/main/docs/linting/TROUBLESHOOTING.md#i-get-errors-from-the-no-undef-rule-about-global-variables-not-being-defined-even-though-there-are-no-typescript-errors
