@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { TagModuleDto, JournalEntryType } from '../../../types/types';
+import { JournalEntryType, TagType } from '../../../types/journalTypes';
 import classes from '../../../utils/classes';
 import Tag from '../../Common/Tag';
 import TagSelector from './TagSelector';
 
 type Props = {
-  data: TagModuleDto[];
+  data: TagType[];
   entryId: string;
   updateEntry: React.Dispatch<React.SetStateAction<JournalEntryType>>;
 }
@@ -13,7 +13,7 @@ type Props = {
 function toggleTag(
   updateEntry: React.Dispatch<React.SetStateAction<JournalEntryType>>,
 ) {
-  return function toggle(tag: TagModuleDto) {
+  return function toggle(tag: TagType) {
     updateEntry((data: JournalEntryType) => {
       const existingTags = data.tags || [];
       const hasTag = existingTags.find((existingTag) => existingTag.id === tag.id);

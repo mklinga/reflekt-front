@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useDispatch } from 'react-redux';
 import { AnyAction, Dispatch } from '@reduxjs/toolkit';
 import { saveJournalEntry } from '../../../services/journal';
-import { JournalEntryType } from '../../../types/types';
+import { JournalEntryType } from '../../../types/journalTypes';
 import DatePicker from './DatePicker';
 import EntryEditor from './EntryEditor';
 import MoodPicker from './MoodPicker';

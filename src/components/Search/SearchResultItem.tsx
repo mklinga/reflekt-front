@@ -1,6 +1,6 @@
 import { marked } from 'marked';
 import * as React from 'react';
-import { SearchResult } from '../../types/types';
+import { SearchResult } from '../../types/journalTypes';
 
 type Props = {
   data: SearchResult;

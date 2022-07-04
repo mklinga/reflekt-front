@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { ImageModuleDto } from '../../../types/types';
+import { ImageType } from '../../../types/journalTypes';
 
 type Props = {
-  data: ImageModuleDto[];
+  data: ImageType[];
 };
 
 function getImageUrl(image: string): string {

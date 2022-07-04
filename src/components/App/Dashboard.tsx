@@ -1,6 +1,6 @@
 import * as React from 'react';
 import useDashboardData from '../../hooks/useDashboardData';
-import { DashboardData } from '../../types/types';
+import { DashboardData } from '../../types/dashboardTypes';
 import HighlightItem from '../Common/HighlightItem';
 import Spinner from '../Common/Spinner';
 

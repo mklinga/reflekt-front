@@ -1,6 +1,6 @@
 import * as React from 'react';
 import fetchDashboardData from '../services/dashboard';
-import { DashboardData, DashboardDataHook } from '../types/types';
+import { DashboardData, DashboardDataHook } from '../types/dashboardTypes';
 
 export default function useDashboardData(): DashboardDataHook {
   const [loaded, setLoaded] = React.useState(false);

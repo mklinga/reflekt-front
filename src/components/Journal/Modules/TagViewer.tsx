@@ -1,9 +1,9 @@
 import * as React from 'react';
 import Tag from '../../Common/Tag';
-import { TagModuleDto } from '../../../types/types';
+import { TagType } from '../../../types/journalTypes';
 
 type Props = {
-  data: TagModuleDto[];
+  data: TagType[];
 };
 
 export default function TagViewer(props: Props) {

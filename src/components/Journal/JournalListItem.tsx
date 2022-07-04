@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import ImageIcon from '../../icons/ImageIcon';
-import { JournalEntryType } from '../../types/types';
+import { JournalEntryType } from '../../types/journalTypes';
 import { dateStringToLocale } from '../../utils/date';
 import Tag from '../Common/Tag';
 

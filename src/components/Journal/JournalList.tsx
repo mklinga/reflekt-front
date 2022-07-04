@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchAllJournalEntries } from '../../services/journal';
 import { selectListOfEntries, selectListOfEntriesLoaded } from '../../store/journalEntry/journalEntrySelectors';
 import { setListOfEntriesData, setListOfEntriesLoaded } from '../../store/journalEntry/journalEntrySlice';
-import { JournalEntryType } from '../../types/types';
+import { JournalEntryType } from '../../types/journalTypes';
 import Link from '../Common/Link';
 import JournalListFilter from './JournalListFilter';
 import JournalListItem from './JournalListItem';

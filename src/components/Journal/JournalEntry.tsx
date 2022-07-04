@@ -2,7 +2,7 @@ import { marked } from 'marked';
 import * as React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import useJournalEntry from '../../hooks/useJournalEntry';
-import { JournalEntryType, JournalNavigationData } from '../../types/types';
+import { JournalEntryType, JournalNavigationData } from '../../types/journalTypes';
 import LoaderUntilResolved from '../LoaderUntilResolved';
 import ImageViewer from './Modules/ImageViewer';
 import TagViewer from './Modules/TagViewer';

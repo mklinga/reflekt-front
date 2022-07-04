@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { SearchResult } from '../types/types';
+import { SearchResult } from '../types/journalTypes';
 import { fetchJsonData } from '../utils/fetch';
 import * as querystring from '../utils/querystring';
 

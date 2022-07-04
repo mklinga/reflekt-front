@@ -1,6 +1,4 @@
-import {
-  JournalEntryType,
-} from '../types/types';
+import { JournalEntryType } from '../types/journalTypes';
 import { getISODateString, parseStringToDate } from './date';
 
 function journalEntryTypeDtoConverter(journalEntry: JournalEntryType) {

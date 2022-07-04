@@ -4,7 +4,7 @@ import { fetchJournalEntry } from '../services/journal';
 import { RootState } from '../store';
 import { selectJournalEntryById } from '../store/journalEntry/journalEntrySelectors';
 import { updateEntry } from '../store/journalEntry/journalEntrySlice';
-import { JournalEntryHook, JournalNavigationData } from '../types/types';
+import { JournalEntryHook, JournalNavigationData } from '../types/journalTypes';
 
 export default function useJournalEntry(id: string): JournalEntryHook {
   const dispatch = useDispatch();

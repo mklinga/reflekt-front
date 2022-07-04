@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { JournalEntryType } from '../../types/types';
+import { JournalEntryType } from '../../types/journalTypes';
 
 export interface JournalEntryState {
   entries: JournalEntryType[],

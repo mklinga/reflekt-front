@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DashboardData } from '../types/types';
+import { DashboardData } from '../types/dashboardTypes';
 import { fetchJsonData } from '../utils/fetch';
 
 type setDashboardData = React.Dispatch<React.SetStateAction<DashboardData>>;

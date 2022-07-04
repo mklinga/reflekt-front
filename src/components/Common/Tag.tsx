@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { TagModuleDto } from '../../types/types';
+import { TagType } from '../../types/journalTypes';
 
 type Props = {
-  tag: TagModuleDto;
+  tag: TagType;
   simple?: boolean;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { JournalEntryType } from '../../../types/types';
+import { JournalEntryType } from '../../../types/journalTypes';
 import { getISODateString, parseStringToDate } from '../../../utils/date';
 
 type Props = {

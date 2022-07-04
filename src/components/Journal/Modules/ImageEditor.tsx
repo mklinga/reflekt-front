@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { ImageModuleDto, JournalEntryType } from '../../../types/types';
+import { ImageType, JournalEntryType } from '../../../types/journalTypes';
 
 type Props = {
-  data: ImageModuleDto[];
+  data: ImageType[];
   entryId: string;
   updateEntry: React.Dispatch<React.SetStateAction<JournalEntryType>>;
 }
@@ -29,7 +29,7 @@ function removeImage(
 }
 
 function imageBar(
-  data: ImageModuleDto[],
+  data: ImageType[],
   updateEntry: React.Dispatch<React.SetStateAction<JournalEntryType>>,
 ) {
   return (
@@ -62,7 +62,7 @@ function getOnChangeFunction(
       return;
     }
 
-    const savedImage = await response.json() as ImageModuleDto;
+    const savedImage = await response.json() as ImageType;
     updateEntry((data) => ({ ...data, images: [...data.images, savedImage] }));
   };
 }

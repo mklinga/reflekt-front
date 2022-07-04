@@ -1,6 +1,6 @@
 import * as React from 'react';
 import fetchSearchResults from '../services/search';
-import { SearchResult, SearchResultHook } from '../types/types';
+import { SearchResult, SearchResultHook } from '../types/journalTypes';
 
 export default function useSearchResults(
   query: string | undefined,

@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { saveNewTag } from '../../../services/tags';
-import { TagModuleDto } from '../../../types/types';
+import { TagType } from '../../../types/journalTypes';
 import { sortByColorAndName } from '../../../utils/tags';
 
 type Props = {
-  setTags: React.Dispatch<React.SetStateAction<TagModuleDto[]>>,
+  setTags: React.Dispatch<React.SetStateAction<TagType[]>>,
   toggleEditor: () => void;
 }
 

@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {
-  FetchStatus,
   JournalEntryType,
   JournalNavigationData,
   NavigableJournalEntry,
-} from '../types/types';
+} from '../types/journalTypes';
+import { FetchStatus } from '../types/types';
 import { fetchJsonData, putJsonData, postJsonData } from '../utils/fetch';
 import * as converters from '../utils/converters';
 

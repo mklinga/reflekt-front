@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { TagModuleDto } from '../../../types/types';
+import { TagType } from '../../../types/journalTypes';
 import classes from '../../../utils/classes';
 import { sortByColorAndName } from '../../../utils/tags';
 import Tag from '../../Common/Tag';
@@ -7,7 +7,7 @@ import TagEditorInline from './TagEditorInline';
 
 type TagSelectorProps = {
   visible: boolean,
-  toggleTagFn: (tag: TagModuleDto) => void,
+  toggleTagFn: (tag: TagType) => void,
 }
 
 export default function TagSelector({
@@ -17,7 +17,7 @@ export default function TagSelector({
   const [tagEditorVisible, setTagEditorVisible] = React.useState<boolean>(false);
 
   React.useEffect(() => {
-    fetch('/api/tags/').then((response) => response.json()).then((allTagData: TagModuleDto[]) => {
+    fetch('/api/tags/').then((response) => response.json()).then((allTagData: TagType[]) => {
       setAllTags(sortByColorAndName(allTagData));
     });
   }, []);
@@ -29,7 +29,7 @@ export default function TagSelector({
     'bg-white', 'p-4', 'z-10',
   ]);
 
-  const handleClick = (tag: TagModuleDto) => (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = (tag: TagType) => (e: React.MouseEvent<HTMLButtonElement>) => {
     toggleTagFn(tag);
     e.preventDefault();
   };
