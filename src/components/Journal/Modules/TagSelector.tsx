@@ -1,21 +1,13 @@
 import * as React from 'react';
 import { TagModuleDto } from '../../../types/types';
 import classes from '../../../utils/classes';
+import { sortByColorAndName } from '../../../utils/tags';
 import Tag from '../../Common/Tag';
 import TagEditorInline from './TagEditorInline';
 
 type TagSelectorProps = {
   visible: boolean,
   toggleTagFn: (tag: TagModuleDto) => void,
-}
-
-function sortByColorAndName(tags: TagModuleDto[]): TagModuleDto[] {
-  return [].concat(tags).sort((a, b) => {
-    if (a.color.toLowerCase() === b.color.toLowerCase()) {
-      return a.name.localeCompare(b.name);
-    }
-    return a.color.toLowerCase().localeCompare(b.color.toLowerCase());
-  });
 }
 
 export default function TagSelector({
@@ -30,7 +22,7 @@ export default function TagSelector({
     });
   }, []);
 
-  const addNewTag = () => setTagEditorVisible(!tagEditorVisible);
+  const toggleEditor = () => setTagEditorVisible(!tagEditorVisible);
 
   const className = classes([
     'absolute', 'w-full', visible ? 'visible' : 'hidden', 'border', 'border-dashed', 'border-black',
@@ -45,7 +37,7 @@ export default function TagSelector({
   return (
     <div className={className}>
       {tagEditorVisible
-        ? <TagEditorInline setTags={setAllTags} />
+        ? <TagEditorInline setTags={setAllTags} toggleEditor={toggleEditor} />
         : (
           <div>
             {allTags.map((tag) => (
@@ -56,7 +48,7 @@ export default function TagSelector({
           </div>
         )}
       <div>
-        <button type="button" className="text-blue-600 underline float-right" onClick={addNewTag}>
+        <button type="button" className="text-blue-600 underline float-right" onClick={toggleEditor}>
           {tagEditorVisible ? 'Close' : 'Add new tag'}
         </button>
       </div>

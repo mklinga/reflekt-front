@@ -1,13 +1,15 @@
 import * as React from 'react';
 import { saveNewTag } from '../../../services/tags';
 import { TagModuleDto } from '../../../types/types';
+import { sortByColorAndName } from '../../../utils/tags';
 
 type Props = {
-  setTags: React.Dispatch<React.SetStateAction<TagModuleDto[]>>
+  setTags: React.Dispatch<React.SetStateAction<TagModuleDto[]>>,
+  toggleEditor: () => void;
 }
 
 export default function TagEditorInline(props: Props) {
-  const { setTags } = props;
+  const { setTags, toggleEditor } = props;
   const name = React.useRef(null);
   const color = React.useRef(null);
 
@@ -27,14 +29,15 @@ export default function TagEditorInline(props: Props) {
     }
     /* eslint-enable no-alert */
 
-    /* eslint-disable no-console */
     const [savedTag, fetchStatus] = await saveNewTag(nameValue, colorValue);
     if (fetchStatus === 'SUCCESS') {
-      setTags((tags) => tags.concat(savedTag));
+      setTags((tags) => sortByColorAndName(tags.concat(savedTag)));
     } else {
+      /* eslint-disable no-console */
       console.warn('Saving new data was not a SUCCESS');
+      /* eslint-enable no-console */
     }
-    /* eslint-enable no-console */
+    toggleEditor();
   }
 
   return (
