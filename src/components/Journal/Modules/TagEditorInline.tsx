@@ -33,9 +33,7 @@ export default function TagEditorInline(props: Props) {
     if (fetchStatus === 'SUCCESS') {
       setTags((tags) => sortByColorAndName(tags.concat(savedTag)));
     } else {
-      /* eslint-disable no-console */
       console.warn('Saving new data was not a SUCCESS');
-      /* eslint-enable no-console */
     }
     toggleEditor();
   }

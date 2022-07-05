@@ -13,9 +13,7 @@ export function getISODateString(date: Date) {
 export function dateStringToLocale(dateString: string) {
   const date: Date = parseStringToDate(dateString);
   if (date === null) {
-    /* eslint-disable no-console */
     console.warn('Trying to convert null date', dateString);
-    /* eslint-enable no-console */
     return '';
   }
 

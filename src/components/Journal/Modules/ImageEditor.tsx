@@ -15,10 +15,7 @@ function removeImage(
     const response = await fetch(`/api/images/${imageId}`, { method: 'DELETE' });
     if (response.status !== 200) {
       // TODO: Do something else //
-      /* eslint-disable no-console */
-      console.error('DELETING image failed 🤷‍♀️');
-      console.log(response);
-      /* eslint-enable no-console */
+      console.error('DELETING image failed 🤷‍♀️', response);
       return;
     }
 
@@ -56,9 +53,7 @@ function getOnChangeFunction(
     const response = await fetch('/api/images', { method: 'POST', body: formData });
     if (response.status !== 200) {
       // TODO: Do something else //
-      /* eslint-disable no-console */
       console.error(response);
-      /* eslint-enable no-console */
       return;
     }
 

@@ -23,6 +23,7 @@ module.exports = {
     '@typescript-eslint',
   ],
   rules: {
+    'no-console': ['error', { allow: ['warn', 'error'] }],
     'react/jsx-filename-extension': [1, { extensions: ['.tsx'] }],
     'import/extensions': ['error', { ts: 'never', tsx: 'never' }],
     'jsx-a11y/no-autofocus': 'off',

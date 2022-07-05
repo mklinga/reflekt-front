@@ -10,6 +10,11 @@ export default function MoodPicker(props: Props) {
   const { value, updateEntry } = props;
 
   function onChange(e: React.ChangeEvent<HTMLInputElement>) {
+    if (e.target.value && !e.target.value.match(/^\p{Emoji}$/gu)) {
+      console.warn('Ignoring invalid mood', e.target.value);
+      return;
+    }
+
     updateEntry((entry) => ({ ...entry, mood: e.target.value }));
   }
 

@@ -15,7 +15,7 @@ export default function ContactCreator() {
   });
 
   const createContact = () => {
-    console.log('Sending data', data);
+    // console.log('Sending data', data);
   };
 
   const changeText = ((field: string) => (e: React.ChangeEvent<HTMLInputElement>) => {

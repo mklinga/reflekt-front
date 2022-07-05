@@ -17,7 +17,7 @@ export default function TextInput(props: Props) {
     autoFocus, placeholder, defaultValue, onChange, onKeyPress, className, type, name,
   } = props;
 
-  const finalClassName = classes(['border', className]);
+  const finalClassName = classes(['border border-slate-300 rounded', className]);
 
   return (
     <input
