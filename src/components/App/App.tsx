@@ -14,14 +14,14 @@ export default function App() {
   const username = useSelector(selectUsername);
   const headerText = `Reflekt${isLocalHost() ? ' - DEVELOPMENT' : ''}`;
   const headerClass = classes([
-    'text-xl font-medium border-b border-black',
-    !isLocalHost() ? 'text-white bg-cyan-600 p-3' : 'text-black py-3',
+    'text-xl font-medium',
+    isLocalHost() ? 'text-white bg-cyan-600 p-3' : 'text-black py-3',
   ]);
 
   return (
     <>
       <div className="grow">
-        <header className="mb-3">
+        <header className="flex justify-between mb-3 border-b border-black items-baseline">
           <Link to="/">
             <h1 className={headerClass}>{headerText}</h1>
           </Link>

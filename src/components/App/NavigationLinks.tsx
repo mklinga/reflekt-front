@@ -3,7 +3,7 @@ import { Location, useLocation } from 'react-router';
 import Link from '../Common/Link';
 
 function getLinkClassNames(location: Location, linkTo: string) {
-  const isActive = location.pathname.startsWith(linkTo);
+  const isActive = location.pathname === linkTo;
   const color = isActive ? 'text-black font-bold' : 'text-blue-600';
 
   return `${color} mr-3`;
