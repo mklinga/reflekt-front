@@ -18,14 +18,14 @@ export default function JournalListFilter() {
   }, [value]);
 
   return (
-    <div className="relative">
-      <span className="text-gray-400 mr-2 absolute top-[3px] left-0.5"><SearchIcon /></span>
+    <div className="relative w-6/12 mx-auto my-9">
+      <span className="text-gray-400 text-xl mr-2 absolute top-[5px] left-1"><SearchIcon /></span>
       <TextInput
         placeholder="Search"
         defaultValue={value}
         onChange={updateValue}
         onKeyPress={onKeyPress}
-        className="pl-6 w-full"
+        className="pl-7 w-full text-xl"
       />
     </div>
   );

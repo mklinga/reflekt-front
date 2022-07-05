@@ -10,7 +10,7 @@ export default function ActionButton(props: Props) {
 
   return (
     <button
-      className="rounded bg-sky-400 hover:bg-sky-500 text-white py-1 px-3"
+      className="rounded bg-sky-500 hover:bg-sky-600 text-white py-1 px-3"
       type="button"
       onClick={onClick}
     >

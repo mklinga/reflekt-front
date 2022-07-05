@@ -12,10 +12,11 @@ type Props = {
 export default function JournalListItem(props: Props) {
   const {
     entry: {
-      id, title, entryDate, images, tags,
+      id, title, entryDate, mood, images, tags,
     },
   } = props;
   const linkUrl = `/journal/${id}`;
+  const hasMood = mood && (mood !== '😶');
 
   return (
     <Link to={linkUrl}>
@@ -32,7 +33,8 @@ export default function JournalListItem(props: Props) {
             {tags ? tags.map((tag) => <Tag simple tag={tag} key={tag.id} />) : null}
           </span>
         </div>
-        {images.length > 0 ? <span className="text-gray-400 mr-3"><ImageIcon /></span> : null}
+        {images.length > 0 ? <span className="text-gray-400 mr-1"><ImageIcon /></span> : null}
+        {hasMood ? <span>{mood}</span> : null}
       </div>
     </Link>
   );

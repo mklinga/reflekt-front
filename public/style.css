@@ -461,16 +461,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   left: 0px;
 }
 
-.top-\[3px\] {
-  top: 3px;
+.top-\[5px\] {
+  top: 5px;
 }
 
-.left-0\.5 {
-  left: 0.125rem;
-}
-
-.left-0 {
-  left: 0px;
+.left-1 {
+  left: 0.25rem;
 }
 
 .left-full {
@@ -515,6 +511,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .mx-3 {
   margin-left: 0.75rem;
   margin-right: 0.75rem;
+}
+
+.my-9 {
+  margin-top: 2.25rem;
+  margin-bottom: 2.25rem;
 }
 
 .my-1 {
@@ -626,6 +627,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 12rem;
 }
 
+.w-6\/12 {
+  width: 50%;
+}
+
 .w-full {
   width: 100%;
 }
@@ -677,6 +682,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .items-center {
   align-items: center;
+}
+
+.justify-end {
+  justify-content: flex-end;
 }
 
 .justify-between {
@@ -738,9 +747,9 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(8 145 178 / var(--tw-bg-opacity));
 }
 
-.bg-sky-400 {
+.bg-sky-500 {
   --tw-bg-opacity: 1;
-  background-color: rgb(56 189 248 / var(--tw-bg-opacity));
+  background-color: rgb(14 165 233 / var(--tw-bg-opacity));
 }
 
 .bg-blue-100 {
@@ -839,8 +848,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-left: 0.75rem;
 }
 
-.pl-6 {
-  padding-left: 1.5rem;
+.pl-7 {
+  padding-left: 1.75rem;
 }
 
 .text-left {
@@ -978,9 +987,9 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-color: rgb(226 232 240 / var(--tw-border-opacity));
 }
 
-.hover\:bg-sky-500:hover {
+.hover\:bg-sky-600:hover {
   --tw-bg-opacity: 1;
-  background-color: rgb(14 165 233 / var(--tw-bg-opacity));
+  background-color: rgb(2 132 199 / var(--tw-bg-opacity));
 }
 
 .hover\:bg-gray-100:hover {

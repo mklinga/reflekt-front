@@ -4,7 +4,7 @@ import Link from '../Common/Link';
 
 function getLinkClassNames(location: Location, linkTo: string) {
   const isActive = location.pathname.startsWith(linkTo);
-  const color = isActive ? 'text-black' : 'text-blue-600';
+  const color = isActive ? 'text-black font-bold' : 'text-blue-600';
 
   return `${color} mr-3`;
 }
@@ -13,7 +13,7 @@ export default function NavigationLinks() {
   const location = useLocation();
 
   return (
-    <div>
+    <div className="my-3">
       <Link className={getLinkClassNames(location, '/journal')} to="/journal">Journals</Link>
       <Link className={getLinkClassNames(location, '/contacts')} to="/contacts">Contacts</Link>
     </div>
