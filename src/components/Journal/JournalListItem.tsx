@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import EditIcon from '../../icons/EditIcon';
 import ImageIcon from '../../icons/ImageIcon';
 import { JournalEntryType } from '../../types/journalTypes';
 import { dateStringToLocale } from '../../utils/date';
@@ -10,6 +11,7 @@ type Props = {
 }
 
 export default function JournalListItem(props: Props) {
+  const navigate = useNavigate();
   const {
     entry: {
       id, title, entryDate, mood, images, tags,
@@ -18,14 +20,29 @@ export default function JournalListItem(props: Props) {
   const linkUrl = `/journal/${id}`;
   const hasMood = mood && (mood !== '😶');
 
+  const editButtonClick = React.useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
+    // Prevent the underlying Link element from catching the event
+    e.preventDefault();
+    navigate(`/journal/${id}/edit`);
+  }, [id]);
+
   return (
     <Link to={linkUrl}>
-      <div className="flex p-1 items-center hover:bg-gray-100 border border-transparent hover:border-slate-200 cursor-pointer">
+      <div className="group flex p-1 items-center hover:bg-gray-100 border border-transparent hover:border-slate-200 cursor-pointer">
         <div className="flex-grow flex flex-col pl-3 overflow-hidden text-ellipsis">
           <span>
             <span className="text-gray-400 text-sm w-48 inline-block">{dateStringToLocale(entryDate)}</span>
-            <span className="md:text-lg font-medium overflow-hidden text-ellipsis mr-3 whitespace-nowrap">
-              {title}
+            <span className="inline-flex">
+              <span className="md:text-lg font-medium overflow-hidden text-ellipsis mr-3 whitespace-nowrap">
+                {title}
+              </span>
+              <button
+                type="button"
+                onClick={editButtonClick}
+                className="invisible group-hover:visible inline-flex items-center text-gray-600"
+              >
+                <EditIcon />
+              </button>
             </span>
           </span>
           <span className="hidden md:inline-block">
