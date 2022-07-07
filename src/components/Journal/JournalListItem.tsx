@@ -21,8 +21,7 @@ export default function JournalListItem(props: Props) {
   const hasMood = mood && (mood !== '😶');
 
   const editButtonClick = React.useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
-    // Prevent the underlying Link element from catching the event
-    e.preventDefault();
+    e.preventDefault(); // Prevent the underlying Link element from catching the event
     navigate(`/journal/${id}/edit`);
   }, [id]);
 

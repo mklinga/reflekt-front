@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Contact } from '../../types/contactTypes';
+import { Contact, ContactRelation } from '../../types/contactTypes';
 import ActionButton from '../Common/ActionButton';
 import TextInput from '../Common/TextInput';
 import RelationBuilder from './RelationBuilder';
@@ -15,7 +15,11 @@ export default function ContactCreator() {
   });
 
   const createContact = () => {
-    // console.log('Sending data', data);
+    console.log('Sending data', data);
+  };
+
+  const updateRelations = (relations: ContactRelation[]) => {
+    setData((oldData) => ({ ...oldData, relations }));
   };
 
   const changeText = ((field: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,7 +42,12 @@ export default function ContactCreator() {
         </label>
       </div>
       <div className="my-3">
-        <RelationBuilder contacts={oldContacts} draftContact={data} />
+        <RelationBuilder
+          contacts={oldContacts}
+          mainContact={data}
+          relations={data.relations}
+          updateRelations={updateRelations}
+        />
       </div>
       <div>
         <ActionButton onClick={createContact}>Create!</ActionButton>
