@@ -1,6 +1,8 @@
 import { marked } from 'marked';
 import * as React from 'react';
 import { SearchResult } from '../../types/journalTypes';
+import { dateStringToLocale } from '../../utils/date';
+import Link from '../Common/Link';
 
 type Props = {
   data: SearchResult;
@@ -22,7 +24,11 @@ function parseVisibleEntry(entry: string, open: boolean, query: string | undefin
 }
 
 export default function SearchResultItem(props: Props) {
-  const { data: { entry, title }, query } = props;
+  const {
+    data: {
+      entry, title, id, entryDate,
+    }, query,
+  } = props;
 
   const [open, setOpen] = React.useState<boolean>(false);
   const visibleEntry = parseVisibleEntry(entry, open, query);
@@ -33,7 +39,10 @@ export default function SearchResultItem(props: Props) {
         <button className="text-blue-600 mr-3" type="button" onClick={() => setOpen(!open)}>
           {open ? '[-]' : '[+]'}
         </button>
-        {title}
+        <Link to={`/journal/${id}`}>{title}</Link>
+        <span className="float-right font-normal text-sm text-gray-400">
+          {dateStringToLocale(entryDate)}
+        </span>
       </h2>
       {/* eslint-disable react/no-danger */}
       <div className="journal-document" dangerouslySetInnerHTML={{ __html: visibleEntry }} />

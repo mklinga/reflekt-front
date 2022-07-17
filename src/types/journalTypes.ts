@@ -32,6 +32,7 @@ export type SearchResult = {
   id: string;
   title: string;
   entry: string;
+  entryDate: string;
 }
 
 export type JournalEntryHook = {
