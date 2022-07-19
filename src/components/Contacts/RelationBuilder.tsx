@@ -19,7 +19,7 @@ const predicateOptions = predicates
   .map((predicate) => <option key={predicate} value={predicate}>{predicate}</option>);
 
 function contactName(contact: Contact) {
-  return `${contact.firstname} ${contact.lastname}`;
+  return `${contact.firstName} ${contact.lastName}`;
 }
 
 export default function RelationBuilder(props: Props) {

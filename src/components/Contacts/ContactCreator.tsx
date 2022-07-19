@@ -1,17 +1,20 @@
 import * as React from 'react';
+import { useSelector } from 'react-redux';
+import { selectContactEntries } from '../../store/contacts/contactSelector';
 import { Contact, ContactRelation } from '../../types/contactTypes';
 import ActionButton from '../Common/ActionButton';
 import TextInput from '../Common/TextInput';
 import RelationBuilder from './RelationBuilder';
 
-/* TODO: read from api */
-const oldContacts: Contact[] = [{
-  id: '1', firstname: 'Mr.', lastname: 'DemoContact', relations: [],
-}];
-
 export default function ContactCreator() {
+  /*
+    TODO: Handle the case where the contacts have not yet been loaded (such as user coming here
+    from a direct url.
+  */
+  const oldContacts = useSelector(selectContactEntries);
+
   const [data, setData] = React.useState<Contact>({
-    id: 'DRAFT-CONTACT', firstname: '', lastname: '', relations: [],
+    id: 'DRAFT-CONTACT', firstName: '', lastName: '', relations: [],
   });
 
   const createContact = () => {
@@ -32,13 +35,13 @@ export default function ContactCreator() {
       <div className="my-3">
         <label className="flex">
           <span className="mr-3 w-48 text-right inline-block">First name:</span>
-          <TextInput defaultValue="" onChange={changeText('firstname')} className="grow" />
+          <TextInput defaultValue="" onChange={changeText('firstName')} className="grow" />
         </label>
       </div>
       <div className="my-3">
         <label htmlFor="last-name" className="flex">
           <span className="mr-3 w-48 text-right inline-block">Last name:</span>
-          <TextInput defaultValue="" onChange={changeText('lastname')} className="grow" />
+          <TextInput defaultValue="" onChange={changeText('lastName')} className="grow" />
         </label>
       </div>
       <div className="my-3">

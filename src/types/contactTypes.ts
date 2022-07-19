@@ -14,7 +14,7 @@ export type ContactRelation = {
 
 export type Contact = {
   id?: string;
-  firstname: string;
-  lastname: string;
+  firstName: string;
+  lastName: string;
   relations: ContactRelation[];
 }

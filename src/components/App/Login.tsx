@@ -1,6 +1,6 @@
 import * as React from 'react';
 import TextInput from '../Common/TextInput';
-import login from '../../services/login';
+import { login } from '../../services/login';
 
 function onChangeHandler(setterFn: React.Dispatch<React.SetStateAction<string>>) {
   return (e: React.ChangeEvent<HTMLInputElement>) => setterFn(e.target.value);

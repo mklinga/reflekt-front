@@ -7,7 +7,6 @@ import {
   Route,
 } from 'react-router-dom';
 import { store } from './store/index';
-import fetchSystemInformation from './services/system';
 import App from './components/App/App';
 import JournalList from './components/Journal/JournalList';
 import JournalEntry from './components/Journal/JournalEntry';
@@ -17,9 +16,10 @@ import Login from './components/App/Login';
 import Dashboard from './components/App/Dashboard';
 import JournalEntryCreator from './components/Journal/JournalEntryCreator';
 import SearchPage from './components/Search/SearchPage';
-import { setUsername } from './store/user/userSlice';
+import { setLoginStatus } from './store/user/userSlice';
 import Contacts from './components/Contacts/Contacts';
 import ContactCreator from './components/Contacts/ContactCreator';
+import { fetchLoginStatus } from './services/login';
 
 const mainElement = document.querySelector('body > main');
 mainElement.innerHTML = 'Loading...';
@@ -27,8 +27,8 @@ mainElement.innerHTML = 'Loading...';
 async function load() {
   try {
     // fetchSystemInformation will throw an exception if user is not logged in
-    const loginInformation = await fetchSystemInformation();
-    store.dispatch(setUsername(loginInformation.username));
+    const loginInformation = await fetchLoginStatus();
+    store.dispatch(setLoginStatus(loginInformation));
 
     render(
       <Provider store={store}>
