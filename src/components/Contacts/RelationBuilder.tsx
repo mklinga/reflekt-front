@@ -40,6 +40,7 @@ export default function RelationBuilder(props: Props) {
       predicate: 'isFriendOf',
       object: (mainContact || contacts.length < 2) ? contacts[0] : contacts[1],
     };
+    console.log(mainContact, contacts);
     updateRelations(relations.concat(newRelationRow));
   };
 
@@ -64,6 +65,8 @@ export default function RelationBuilder(props: Props) {
   const removeRelation = (removeIndex: number) => () => {
     updateRelations(relations.filter((relation, index) => index !== removeIndex));
   };
+
+  console.log(relations);
   return (
     <div>
       {relations.map(({ subject, predicate, object }, index) => (

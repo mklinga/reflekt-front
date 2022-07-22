@@ -1,5 +1,5 @@
 import * as React from 'react';
-import SparkleIcon from '../../icons/SparkleIcon';
+import StarIcon from '../../icons/StarIcon';
 import { Contact } from '../../types/contactTypes';
 
 type Props = {
@@ -14,8 +14,8 @@ export default function ContactListRow(props: Props) {
     <span className="flex items-center">
       {isUser
         ? (
-          <span title="This is you!" className="inline-block mr-1 text-cyan-600">
-            <SparkleIcon />
+          <span title="This is you!" className="inline-block mr-1 text-yellow-500">
+            <StarIcon />
           </span>
         )
         : null}

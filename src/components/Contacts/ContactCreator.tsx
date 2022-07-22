@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useSelector } from 'react-redux';
+import { addNewContact } from '../../services/contact';
 import { selectContactEntries } from '../../store/contacts/contactSelector';
 import { Contact, ContactRelation } from '../../types/contactTypes';
 import ActionButton from '../Common/ActionButton';
@@ -14,11 +15,11 @@ export default function ContactCreator() {
   const oldContacts = useSelector(selectContactEntries);
 
   const [data, setData] = React.useState<Contact>({
-    id: 'DRAFT-CONTACT', firstName: '', lastName: '', relations: [],
+    id: '00000000-0000-0000-0000-000000000000', firstName: '', lastName: '', relations: [],
   });
 
   const createContact = () => {
-    console.log('Sending data', data);
+    addNewContact(data);
   };
 
   const updateRelations = (relations: ContactRelation[]) => {

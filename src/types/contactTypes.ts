@@ -13,7 +13,7 @@ export type ContactRelation = {
 }
 
 export type Contact = {
-  id?: string;
+  id: string;
   firstName: string;
   lastName: string;
   relations: ContactRelation[];
