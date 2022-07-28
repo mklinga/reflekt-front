@@ -13,6 +13,18 @@ export async function fetchContacts() {
   return [];
 }
 
+export async function fetchContact(id: string) {
+  const fetchUrl = `/api/contacts/${id}`;
+  const [data, status] = await fetchJsonData<Contact>(fetchUrl);
+
+  if (status === 'SUCCESS') {
+    return data;
+  }
+
+  console.error('Fetching contact', id, 'failed', status);
+  return null;
+}
+
 /* Subject and object in ContactRelationDto are the UUID of the Contact,
    or 00000000-0000-0000-0000-000000000000 for not-yet-saved entities
 */

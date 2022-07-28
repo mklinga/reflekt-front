@@ -1,6 +1,7 @@
 import * as React from 'react';
 import StarIcon from '../../icons/StarIcon';
 import { Contact } from '../../types/contactTypes';
+import Link from '../Common/Link';
 
 type Props = {
   contact: Contact;
@@ -19,7 +20,9 @@ export default function ContactListRow(props: Props) {
           </span>
         )
         : null}
-      {`${contact.firstName} ${contact.lastName}`}
+      <Link to={`/contacts/${contact.id}`}>
+        {`${contact.firstName} ${contact.lastName}`}
+      </Link>
     </span>
   );
 }

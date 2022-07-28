@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useSelector } from 'react-redux';
 import { addNewContact } from '../../services/contact';
-import { selectContactEntries } from '../../store/contacts/contactSelector';
+import { selectContacts } from '../../store/contacts/contactSelector';
 import { Contact, ContactRelation } from '../../types/contactTypes';
 import ActionButton from '../Common/ActionButton';
 import TextInput from '../Common/TextInput';
@@ -12,7 +12,7 @@ export default function ContactCreator() {
     TODO: Handle the case where the contacts have not yet been loaded (such as user coming here
     from a direct url.
   */
-  const oldContacts = useSelector(selectContactEntries);
+  const oldContacts = useSelector(selectContacts);
 
   const [data, setData] = React.useState<Contact>({
     id: '00000000-0000-0000-0000-000000000000', firstName: '', lastName: '', relations: [],

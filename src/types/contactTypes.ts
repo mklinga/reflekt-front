@@ -4,7 +4,9 @@ export type ContactPredicate = 'isFriendOf'
   | 'isMotherOf'
   | 'isFatherOf'
   | 'isSiblingOf'
-  | 'isColleagueOf';
+  | 'isColleagueOf'
+  | 'isChildOf'
+  | 'isPartnerOf';
 
 export type ContactRelation = {
   subject: Contact;

@@ -14,6 +14,8 @@ const predicates: ContactPredicate[] = [
   'isFriendOf',
   'isMotherOf',
   'isSiblingOf',
+  'isChildOf',
+  'isPartnerOf',
 ];
 const predicateOptions = predicates
   .map((predicate) => <option key={predicate} value={predicate}>{predicate}</option>);

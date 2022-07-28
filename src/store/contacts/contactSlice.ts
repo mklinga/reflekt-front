@@ -3,12 +3,12 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import { Contact } from '../../types/contactTypes';
 
 export interface ContactState {
-  entries: Contact[],
+  contacts: Contact[],
   loaded: boolean
 }
 
 const initialState: ContactState = {
-  entries: [],
+  contacts: [],
   loaded: false,
 };
 
@@ -16,28 +16,28 @@ export const contactSlice = createSlice({
   name: 'contact',
   initialState,
   reducers: {
-    setContactEntries: (state, action: PayloadAction<Contact[]>) => {
-      state.entries = action.payload;
+    setContacts: (state, action: PayloadAction<Contact[]>) => {
+      state.contacts = action.payload;
     },
-    setContactEntriesLoaded: (state, action: PayloadAction<boolean>) => {
+    setContactsLoaded: (state, action: PayloadAction<boolean>) => {
       state.loaded = action.payload;
     },
-    // updateEntry: (state, action: PayloadAction<JournalEntryType>) => {
-    //   const newEntry = action.payload;
-    //   const oldIndex = state.entries.findIndex((entry) => entry.id === newEntry.id);
-    //   if (oldIndex === -1) {
-    //     state.entries = [newEntry].concat(state.entries);
-    //   } else {
-    //     state.entries[oldIndex] = newEntry;
-    //   }
-    // },
+    updateContact: (state, action: PayloadAction<Contact>) => {
+      const newContact = action.payload;
+      const oldIndex = state.contacts.findIndex((entry) => entry.id === newContact.id);
+      if (oldIndex === -1) {
+        state.contacts = [newContact].concat(state.contacts);
+      } else {
+        state.contacts[oldIndex] = newContact;
+      }
+    },
   },
 });
 
 export const {
-  setContactEntries,
-  setContactEntriesLoaded,
-  // updateEntry,
+  setContacts,
+  setContactsLoaded,
+  updateContact,
 } = contactSlice.actions;
 
 export default contactSlice.reducer;
