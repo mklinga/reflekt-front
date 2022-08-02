@@ -8,10 +8,6 @@ import TextInput from '../Common/TextInput';
 import RelationBuilder from './RelationBuilder';
 
 export default function ContactCreator() {
-  /*
-    TODO: Handle the case where the contacts have not yet been loaded (such as user coming here
-    from a direct url.
-  */
   const oldContacts = useSelector(selectContacts);
 
   const [data, setData] = React.useState<Contact>({

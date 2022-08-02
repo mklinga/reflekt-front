@@ -23,6 +23,7 @@ import { fetchLoginStatus } from './services/login';
 import ContactViewer from './components/Contacts/ContactViewer';
 import { fetchContacts } from './services/contact';
 import { setContacts, setContactsLoaded } from './store/contacts/contactSlice';
+import ContactEventCreator from './components/Contacts/ContactEventCreator';
 
 const mainElement = document.querySelector('body > main');
 mainElement.innerHTML = 'Loading...';
@@ -60,6 +61,7 @@ async function load() {
               <Route path="contacts" element={<Contacts />} />
               <Route path="contacts/:id" element={<ContactViewer />} />
               <Route path="contacts/new" element={<ContactCreator />} />
+              <Route path="events/new" element={<ContactEventCreator />} />
             </Route>
             <Route path="*" element={<span>404, that&apos;s all.</span>} />
           </Routes>

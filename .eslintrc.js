@@ -30,7 +30,7 @@ module.exports = {
     'no-param-reassign': ['error', { props: true, ignorePropertyModificationsFor: ['state'] }],
     'import/prefer-default-export': 'off',
     'jsx-a11y/label-has-associated-control': [2, {
-      controlComponents: ['TextInput'],
+      controlComponents: ['TextInput', 'TextArea'],
       depth: 3,
     }],
   },
