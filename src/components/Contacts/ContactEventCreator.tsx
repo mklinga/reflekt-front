@@ -24,8 +24,8 @@ export default function ContactEventCreator() {
 
   const createEvent = async () => {
     /* TODO: validate before sending */
-    const createdEvent = await addNewContactEvent(draft);
-    console.log('Created', createdEvent);
+    await addNewContactEvent(draft);
+    /* TODO: do something after creation (navigate to contact page etc.) */
   };
 
   const changeInputValue = (field: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
