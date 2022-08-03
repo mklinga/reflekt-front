@@ -18,5 +18,8 @@ export type Contact = {
   id: string;
   firstName: string;
   lastName: string;
+  jobTitle: string;
+  workplace: string;
+  description: string;
   relations: ContactRelation[];
 }

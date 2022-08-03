@@ -11,7 +11,13 @@ export default function ContactCreator() {
   const oldContacts = useSelector(selectContacts);
 
   const [data, setData] = React.useState<Contact>({
-    id: '00000000-0000-0000-0000-000000000000', firstName: '', lastName: '', relations: [],
+    id: '00000000-0000-0000-0000-000000000000',
+    firstName: '',
+    lastName: '',
+    jobTitle: '',
+    workplace: '',
+    description: '',
+    relations: [],
   });
 
   const createContact = () => {
@@ -22,7 +28,7 @@ export default function ContactCreator() {
     setData((oldData) => ({ ...oldData, relations }));
   };
 
-  const changeText = ((field: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
+  const changeText = ((field: keyof Contact) => (e: React.ChangeEvent<HTMLInputElement>) => {
     setData((oldData) => ({ ...oldData, [field]: e.target.value }));
   });
 
@@ -36,9 +42,27 @@ export default function ContactCreator() {
         </label>
       </div>
       <div className="my-3">
-        <label htmlFor="last-name" className="flex">
+        <label className="flex">
           <span className="mr-3 w-48 text-right inline-block">Last name:</span>
           <TextInput defaultValue="" onChange={changeText('lastName')} className="grow" />
+        </label>
+      </div>
+      <div className="my-3">
+        <label className="flex">
+          <span className="mr-3 w-48 text-right inline-block">Description:</span>
+          <TextInput defaultValue="" onChange={changeText('description')} className="grow" />
+        </label>
+      </div>
+      <div className="my-3">
+        <label className="flex">
+          <span className="mr-3 w-48 text-right inline-block">Job Title:</span>
+          <TextInput defaultValue="" onChange={changeText('jobTitle')} className="grow" />
+        </label>
+      </div>
+      <div className="my-3">
+        <label className="flex">
+          <span className="mr-3 w-48 text-right inline-block">Workplace:</span>
+          <TextInput defaultValue="" onChange={changeText('workplace')} className="grow" />
         </label>
       </div>
       <div className="my-3">

@@ -21,9 +21,12 @@ export default function ContactViewer() {
     navigate(`/events/new?withParticipant=${contact.id}`);
   };
 
+  const jobInformation = [contact.jobTitle, contact.workplace].filter((x) => x).join(', ');
+
   return (
     <div>
-      <H1 className="text-center my-4">{`${contact.firstName} ${contact.lastName}`}</H1>
+      <H1 className="text-center mt-4 mb-2">{`${contact.firstName} ${contact.lastName}`}</H1>
+      <span className="text-center mb-4 block">{jobInformation}</span>
       <div>
         <H2 className="pl-4 flex justify-between items-center">
           Events
