@@ -25,8 +25,9 @@ export default function EntryEditor(props: Props) {
         {wordCount || ''}
       </span>
       <textarea
+        placeholder="Add your story"
         className="w-full min-h-[50vh] border border-black p-[2px]"
-        value={value || 'Add your story'}
+        value={value}
         onChange={onChange}
       />
     </div>

@@ -16,9 +16,10 @@ export default function TitleEditor(props: Props) {
   return (
     <span className="grow mr-3">
       <input
+        placeholder="Add title"
         className="text-2xl w-full"
         type="text"
-        value={value || 'Add title'}
+        value={value}
         onChange={onChange}
       />
     </span>
