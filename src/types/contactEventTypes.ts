@@ -1,6 +1,6 @@
 import { Contact } from './contactTypes';
 
-export type ContactEventType = 'IN_PERSON' | 'PHONE';
+export type ContactEventType = 'IN_PERSON' | 'PHONE' | 'VIDEO_CALL';
 
 export type ContactEvent = {
   id: string;
