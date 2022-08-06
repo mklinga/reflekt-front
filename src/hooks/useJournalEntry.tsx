@@ -8,23 +8,23 @@ import { JournalEntryHook, JournalNavigationData } from '../types/journalTypes';
 
 export default function useJournalEntry(id: string): JournalEntryHook {
   const dispatch = useDispatch();
-  const [loaded, setLoaded] = React.useState(false);
+  const [loaded, setLoaded] = React.useState(null);
   const [navigationData, setNavigationData] = React.useState<JournalNavigationData>(null);
   const journalEntry = useSelector((state: RootState) => selectJournalEntryById(state, id));
 
   React.useEffect(() => {
-    setLoaded(false);
+    setLoaded(null);
     setNavigationData(null);
     fetchJournalEntry(id, setNavigationData)
       .then((data) => {
         dispatch(updateEntry(data));
-        setLoaded(true);
+        setLoaded(id);
       });
   }, [id]);
 
   return {
     journalEntry,
     navigationData,
-    loadingStatus: loaded ? 'resolved' : 'loading',
+    loadingStatus: (loaded === id) ? 'resolved' : 'loading',
   };
 }
