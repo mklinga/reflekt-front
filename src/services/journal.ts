@@ -26,8 +26,8 @@ export async function fetchJournalEntry(
   }
 }
 
-export const fetchLatestJournalEntries = async (limit = 10) => {
-  const endpoint = `/api/journal?limit=${limit}`;
+export const fetchLatestJournalEntries = async (limit: number) => {
+  const endpoint = `/api/journal${limit ? `?limit=${limit}` : ''}`;
   const [data, status] = await fetchJsonData<JournalEntryType[]>(endpoint);
   switch (status) {
     case 'SUCCESS':

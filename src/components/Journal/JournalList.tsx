@@ -10,21 +10,25 @@ import ActionButton from '../Common/ActionButton';
 import JournalListFilter from './JournalListFilter';
 import JournalListItem from './JournalListItem';
 
+const DEFAULT_LIMIT = 14;
 export default function JournalList() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const journalEntries = useSelector(selectListOfEntries);
   const loaded = useSelector(selectListOfEntriesLoaded);
 
-  useEffect(() => {
-    if (loaded) {
-      return;
-    }
-
-    fetchLatestJournalEntries(14).then((data: JournalEntryType[]) => {
+  const loadElements = (limit: number) => {
+    dispatch(setListOfEntriesLoaded('not-loaded'));
+    fetchLatestJournalEntries(limit).then((data: JournalEntryType[]) => {
       dispatch(setListOfEntriesData(data));
-      dispatch(setListOfEntriesLoaded(true));
+      dispatch(setListOfEntriesLoaded(limit ? 'partial' : 'full'));
     });
+  };
+
+  useEffect(() => {
+    if (loaded === 'not-loaded') {
+      loadElements(DEFAULT_LIMIT);
+    }
   }, []);
 
   const addNewEntryClick = () => {
@@ -39,9 +43,10 @@ export default function JournalList() {
           + New entry
         </ActionButton>
       </div>
-      {loaded
-        ? journalEntries.map((entry) => <JournalListItem key={entry.id} entry={entry} />)
-        : <span>Loading...</span>}
+      {loaded === 'not-loaded'
+        ? <span>Loading...</span>
+        : journalEntries.map((entry) => <JournalListItem key={entry.id} entry={entry} />)}
+      {loaded === 'partial' ? <ActionButton onClick={() => loadElements(null)}>Load all</ActionButton> : null}
     </div>
   );
 }

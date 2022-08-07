@@ -2,14 +2,16 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { JournalEntryType } from '../../types/journalTypes';
 
+export type EntryLoadStatus = 'not-loaded' | 'partial' | 'full';
+
 export interface JournalEntryState {
   entries: JournalEntryType[],
-  loaded: boolean
+  loaded: EntryLoadStatus;
 }
 
 const initialState: JournalEntryState = {
   entries: [],
-  loaded: false,
+  loaded: 'not-loaded',
 };
 
 export const journalEntrySlice = createSlice({
@@ -19,7 +21,7 @@ export const journalEntrySlice = createSlice({
     setListOfEntriesData: (state, action: PayloadAction<JournalEntryType[]>) => {
       state.entries = action.payload;
     },
-    setListOfEntriesLoaded: (state, action: PayloadAction<boolean>) => {
+    setListOfEntriesLoaded: (state, action: PayloadAction<EntryLoadStatus>) => {
       state.loaded = action.payload;
     },
     updateEntry: (state, action: PayloadAction<JournalEntryType>) => {
