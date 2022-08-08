@@ -46,7 +46,14 @@ export default function JournalList() {
       {loaded === 'not-loaded'
         ? <span>Loading...</span>
         : journalEntries.map((entry) => <JournalListItem key={entry.id} entry={entry} />)}
-      {loaded === 'partial' ? <ActionButton onClick={() => loadElements(null)}>Load all</ActionButton> : null}
+      {loaded === 'partial'
+        ? (
+          <div className="text-center mt-6">
+            <ActionButton secondary onClick={() => loadElements(null)}>
+              Load all
+            </ActionButton>
+          </div>
+        ) : null}
     </div>
   );
 }
