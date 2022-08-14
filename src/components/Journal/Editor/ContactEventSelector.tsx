@@ -15,7 +15,7 @@ export default function ContactEventSelector(props: Props) {
   const eventItems = useEventItems(entryId).contactEvents;
 
   const addEventItem = (eventItem: ContactEvent) => () => {
-    const eventHolderString = `!!contactevent:${eventItem.id}!!`;
+    const eventHolderString = `\n!!contactevent:${eventItem.id}!!`;
     updateEntry((oldValue) => ({
       ...oldValue,
       entry: oldValue.entry + eventHolderString,
