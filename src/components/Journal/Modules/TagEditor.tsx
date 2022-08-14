@@ -41,7 +41,7 @@ export default function TagEditor(props: Props) {
   const toggleTagSelector = () => setTagSelectorVisible(!tagSelectorVisible);
 
   return (
-    <div>
+    <div className="grow">
       <div className="flex justify-between items-center my-3">
         <div className="relative w-full">
           <div

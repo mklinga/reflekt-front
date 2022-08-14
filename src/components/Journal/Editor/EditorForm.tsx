@@ -13,6 +13,7 @@ import TagEditor from '../Modules/TagEditor';
 import ImageEditor from '../Modules/ImageEditor';
 import { parseStringToDate } from '../../../utils/date';
 import { updateEntry } from '../../../store/journalEntry/journalEntrySlice';
+import ContactEventSelector from './ContactEventSelector';
 
 type Props = {
   journalEntry: JournalEntryType;
@@ -74,11 +75,17 @@ export default function EditorForm(props: Props) {
         entryId={draft.id}
         updateEntry={handleEdit(updateDraft, setIsDirty)}
       />
-      <TagEditor
-        data={draft.tags}
-        entryId={draft.id}
-        updateEntry={handleEdit(updateDraft, setIsDirty)}
-      />
+      <div className="flex justify-between items-center">
+        <TagEditor
+          data={draft.tags}
+          entryId={draft.id}
+          updateEntry={handleEdit(updateDraft, setIsDirty)}
+        />
+        <ContactEventSelector
+          updateEntry={handleEdit(updateDraft, setIsDirty)}
+          entryId={draft.id}
+        />
+      </div>
       <EntryEditor value={draft.entry} updateEntry={handleEdit(updateDraft, setIsDirty)} />
     </div>
   );

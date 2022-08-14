@@ -482,6 +482,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   left: 1.5rem;
 }
 
+.top-full {
+  top: 100%;
+}
+
 .left-full {
   left: 100%;
 }

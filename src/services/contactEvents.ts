@@ -13,6 +13,18 @@ export async function fetchContactEvents(contactId: string) {
   return [];
 }
 
+export async function fetchEventsForJournalEntry(entryId: string) {
+  const fetchUrl = `/api/journal/${entryId}/events`;
+  const [data, status] = await fetchJsonData<ContactEvent[]>(fetchUrl);
+
+  if (status === 'SUCCESS') {
+    return data;
+  }
+
+  console.error('Fetching journal events data failed');
+  return [];
+}
+
 export async function addNewContactEvent(contactEvent: ContactEvent) {
   const url = '/api/events';
   const [data, status] = await postJsonData<ContactEvent>(url, contactEvent);

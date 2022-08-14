@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router';
+import { useNavigate } from 'react-router';
 import useQuery from '../../hooks/useQuery';
 import { addNewContactEvent } from '../../services/contactEvents';
 import { selectContacts } from '../../store/contacts/contactSelector';
