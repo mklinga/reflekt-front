@@ -7,7 +7,7 @@ export default function JournalEntryCreator() {
   const journalEntry: JournalEntryType = {
     mood: '😶',
     title: 'It\'s a new day',
-    entry: 'Tell your story',
+    entry: '',
     entryDate: getISODateString(new Date()),
     createdAt: null,
     updatedAt: null,

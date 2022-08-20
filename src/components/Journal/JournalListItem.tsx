@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import EditIcon from '../../icons/EditIcon';
 import ImageIcon from '../../icons/ImageIcon';
-import { JournalEntryType } from '../../types/journalTypes';
+import { JournalEntryType, TagType } from '../../types/journalTypes';
 import { dateStringToLocale } from '../../utils/date';
 import Tag from '../Common/Tag';
 
@@ -19,6 +19,11 @@ export default function JournalListItem(props: Props) {
   } = props;
   const linkUrl = `/journal/${id}`;
   const hasMood = mood && (mood !== '😶');
+
+  const searchTag = (tag: TagType) => (e: React.MouseEvent) => {
+    e.preventDefault();
+    navigate(`/search?tag=${tag.name}`);
+  };
 
   const editButtonClick = React.useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault(); // Prevent the underlying Link element from catching the event
@@ -46,7 +51,9 @@ export default function JournalListItem(props: Props) {
           </span>
           <span className="hidden md:inline-block">
             <span className="w-48 inline-block">&nbsp;</span>
-            {tags ? tags.map((tag) => <Tag simple tag={tag} key={tag.id} />) : null}
+            {tags
+              ? tags.map((tag) => <Tag onClick={searchTag(tag)} simple tag={tag} key={tag.id} />)
+              : null}
           </span>
         </div>
         {images.length > 0 ? <span className="text-gray-400 mr-1"><ImageIcon /></span> : null}
