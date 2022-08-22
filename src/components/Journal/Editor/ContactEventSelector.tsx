@@ -11,6 +11,11 @@ type Props = {
 
 export default function ContactEventSelector(props: Props) {
   const { updateEntry, entryId } = props;
+
+  if (!entryId) {
+    return null;
+  }
+
   const [menuVisible, setMenuVisible] = React.useState(false);
   const eventItems = useEventItems(entryId).contactEvents;
 
