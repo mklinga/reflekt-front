@@ -10,9 +10,8 @@ type Props = {
 
 export default function ContactListRow(props: Props) {
   const { isUser, contact } = props;
-
   return (
-    <div className="grid grid-cols-3">
+    <div className="p-1 grid grid-cols-3 hover:bg-gray-100 border border-transparent hover:border-slate-200">
       <span className="flex items-center">
         {isUser
           ? (

@@ -7,6 +7,8 @@ import Link from '../Common/Link';
 import ContactListRow from './ContactListRow';
 import ContactRowFilter from './ContactRowFilter';
 
+type SortableField = 'workplace' | 'jobTitle';
+type SortOption = 'default' | 'workplace' | 'jobTitle';
 function makeSearchableStringFromContact(contact: Contact) {
   const {
     firstName, lastName, id, workplace, description, jobTitle,
@@ -16,12 +18,38 @@ function makeSearchableStringFromContact(contact: Contact) {
   }).filter((x) => x).join('').toLowerCase();
 }
 
+function sortBy(field: SortableField) {
+  return function doSort(a: Contact, b: Contact) {
+    /* We sort empty values to the bottom */
+    if (!a[field] || !b[field]) {
+      return a[field] ? -1 : 1;
+    }
+
+    /* If the field value is equal, we sort the rows by the lastName */
+    return (a[field] === b[field])
+      ? (a.lastName || '').localeCompare(b.lastName || '')
+      : a[field].localeCompare(b[field]);
+  };
+}
+
+function sortContacts(contacts: Contact[], sort: SortOption) {
+  switch (sort) {
+    case 'workplace':
+    case 'jobTitle':
+      return contacts.slice().sort(sortBy(sort));
+    case 'default':
+    default:
+      return contacts;
+  }
+}
+
 export default function Contacts() {
   const selfContactId = useSelector(selectUserContactId);
   const contacts = useSelector(selectContacts);
   const loaded = useSelector(selectContactsLoaded);
 
   const [filter, setFilter] = React.useState('');
+  const [sort, setSort] = React.useState<SortOption>('default');
 
   const filteredContacts = filter
     ? contacts.filter((contact) => {
@@ -29,6 +57,10 @@ export default function Contacts() {
       return searchString.indexOf(filter.toLowerCase()) !== -1;
     })
     : contacts;
+
+  const sortedContacts = sort === 'default'
+    ? filteredContacts
+    : sortContacts(filteredContacts, sort);
 
   return (
     <div>
@@ -39,8 +71,19 @@ export default function Contacts() {
         </Link>
       </div>
       <ContactRowFilter value={filter} setValue={setFilter} />
+      <div className="grid grid-cols-3 font-bold border-b">
+        <button className="font-bold text-left" type="button" onClick={() => setSort('default')}>
+          Name
+        </button>
+        <button className="font-bold text-left" type="button" onClick={() => setSort('jobTitle')}>
+          Job Title
+        </button>
+        <button className="font-bold text-left" type="button" onClick={() => setSort('workplace')}>
+          Workplace
+        </button>
+      </div>
       {loaded
-        ? filteredContacts.map((contact) => (
+        ? sortedContacts.map((contact) => (
           <ContactListRow
             key={contact.id}
             contact={contact}
