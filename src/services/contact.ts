@@ -6,7 +6,7 @@ export async function fetchContacts() {
   const [data, status] = await fetchJsonData<Contact[]>(fetchUrl);
 
   if (status === 'SUCCESS') {
-    return data;
+    return data.sort((a, b) => (a.lastName || '').localeCompare(b.lastName || ''));
   }
 
   console.error('Fetching contacts failed', status);

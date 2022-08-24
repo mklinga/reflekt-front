@@ -12,17 +12,21 @@ export default function ContactListRow(props: Props) {
   const { isUser, contact } = props;
 
   return (
-    <span className="flex items-center">
-      {isUser
-        ? (
-          <span title="This is you!" className="inline-block mr-1 text-yellow-500">
-            <StarIcon />
-          </span>
-        )
-        : null}
-      <Link to={`/contacts/${contact.id}`}>
-        {`${contact.firstName} ${contact.lastName}`}
-      </Link>
-    </span>
+    <div className="grid grid-cols-3">
+      <span className="flex items-center">
+        {isUser
+          ? (
+            <span title="This is you!" className="inline-block mr-1 text-yellow-500">
+              <StarIcon />
+            </span>
+          )
+          : null}
+        <Link to={`/contacts/${contact.id}`}>
+          {`${contact.lastName ? `${contact.lastName}, ` : ''}${contact.firstName}`}
+        </Link>
+      </span>
+      <span>{contact.jobTitle}</span>
+      <span>{contact.workplace}</span>
+    </div>
   );
 }
